@@ -4,6 +4,8 @@
   <img width="300" height="100" src="https://scontent.fbog2-5.fna.fbcdn.net/v/t39.30808-6/285747520_5508825255795774_1729168874771235652_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeE-rNNmYEBCRUef9CbBhBp3s7xWawKjcDOzvFZrAqNwM-p52IirJOE_VI2bxN-gEp-qbAVfW5vYENXgYATpJ3PZ&_nc_ohc=Jx_ZG_XsmWkAX_1YWA7&_nc_oc=AQl2B9sbX7wwqxsiG3mTGDgXmxYs0Keb70HcBmn9bg-neqILKA7sex1luPJUUSHdTZ0&_nc_ht=scontent.fbog2-5.fna&oh=00_AT_Axh3QrNeWBFZfkDpQ0qmwvxrobMmhW7haUZuBNShuVg&oe=62A6C065">
 </p>
 
+## **Objetivo general**
+
 Desarrollar una solución tecnológica que ayude a Azban Buzos a mejorar la productividad en la producción de los pedidos, logrando entregas efectivas dentro de los tiempos establecidos y un mejor control a nivel de recepción y gestión de las ventas.
 
 
