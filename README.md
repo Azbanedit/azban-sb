@@ -11,10 +11,10 @@ Desarrollar una solución tecnológica que ayude a Azban Buzos a mejorar la prod
 
 ## **Objetivos específicos**
 
-●	Diseñar un sistema web que permita el registro de las ventas, tener control sobre el estado, orden en producción, entrega y pago de pedido.
-●	Digitalizar algunos procesos de producción que actualmente se realizan de forma manual.
-●	Crear una base de datos que permita un óptimo manejo de los pedidos, tomas de decisiones a nivel del negocio basado en los datos que se generan.
-●	Mantener informado al cliente del estado del pedido en cuanto a producción y envío.
+<p>●	Diseñar un sistema web que permita el registro de las ventas, tener control sobre el estado, orden en producción, entrega y pago de pedido.</p>
+<p>●	Digitalizar algunos procesos de producción que actualmente se realizan de forma manual.</p>
+<p>●	Crear una base de datos que permita un óptimo manejo de los pedidos, tomas de decisiones a nivel del negocio basado en los datos que se generan.</p>
+<p>●	Mantener informado al cliente del estado del pedido en cuanto a producción y envío.</p>
 
 ## **Planteamiento del problema**
 
