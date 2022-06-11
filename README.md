@@ -27,10 +27,10 @@ Se busca optimizar y mejorar la productividad dentro de la producción de la tie
 
 ## **Alcance**
 
-●Se desarrollará un software por medio de las siguientes tecnologías: SQL Server, Visual Studio Code, y Angular.
-●Se pretende instalar en internet con el fin de tener un uso más accesible.
-●Se ejecutará en un lapso de tiempo de dos años comprendidos entre el 19 de julio del año 2021 y 18 de julio del 2023.
-●Los módulos a desarrollar para cumplir con el objetivo principal del proyecto serían los siguientes:
+<p>●Se desarrollará un software por medio de las siguientes tecnologías: SQL Server, Visual Studio Code, y Angular.</p>
+<p>●Se pretende instalar en internet con el fin de tener un uso más accesible.</p>
+<p>●Se ejecutará en un lapso de tiempo de dos años comprendidos entre el 19 de julio del año 2021 y 18 de julio del 2023.</p>
+<p>●Los módulos a desarrollar para cumplir con el objetivo principal del proyecto serían los siguientes:</p>
 *	Producción: Módulo para priorizar, gestionar y liberar pedidos para entrega al cliente.
 *	Impresión de guías: Módulo diseñado para la impresión masiva de guías de entrega.
 *	Recepción de pedidos: Módulo diseñado para el acompañamiento al cliente en el proceso de compra. Recepción de la información del pedido.
