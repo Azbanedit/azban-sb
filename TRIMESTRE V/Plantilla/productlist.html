@@ -90,20 +90,20 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-boxes fa-fw"></i> &nbsp; LIST PRODUCTS
+					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PRODUCTOS
 				</h3>
 				<p class="text-justify">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
+					Listado y estdo de productos para su actualizacion.
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; NEW PRODUCT</a>
+						<a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO_PRODUCTO</a>
 					</li>
 					<li>
-						<a class="active" href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; LIST PRODUCTS</a>
+						<a class="active" href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA_PRODUCTOS</a>
 					</li>
 				</ul>	
 			</div>
@@ -115,12 +115,13 @@
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>CODE</th>
-								<th>NAME</th>
-								<th>BRAND</th>
-								<th>PRICE</th>
-								<th>UPDATE</th>
+								<th>CODIGO</th>
+								<th>NOMBRE</th>
+								<th>ESTADO</th>
+								<th>PRECIO</th>
+								<th>ACTUALIZAR</th>
 								<th>DELETE</th>
+								<th>CAMBIAR_ESTADO</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -128,7 +129,7 @@
 								<td>1</td>
 								<td>012342567</td>
 								<td>Product name</td>
-								<td>Product brand</td>
+								<td>PRODUCCION</td>
 								<td>$7.00 USD</td>
 								<td>
 									<button type="button" class="btn btn-success">
@@ -141,12 +142,22 @@
 	  									<i class="far fa-trash-alt"></i>
 									</button>
 								</td>
+								<td>
+									<label for="estado">CAMBIO_ESTADO</label>
+									<select name="estado" id="estado">
+										<option value="PRODUCCION">PRODUCCION</option>
+										<option value="INGRESADO">INGRESADO</option>
+										<option value="ENTREGADO">ENTREGADO</option>
+										<option value="TERMINADO">TERMINADO</option>
+										<option value="ESTAMPADO">ESTAMPADO</option>
+									</select>
+								</td>
 							</tr>
 							<tr class="text-center" >
 								<td>2</td>
 								<td>987654234</td>
 								<td>Product name</td>
-								<td>Product brand</td>
+								<td>INGRESADO</td>
 								<td>$717.00 USD</td>
 								<td>
 									<button type="button" class="btn btn-success">
@@ -159,12 +170,23 @@
 	  									<i class="far fa-trash-alt"></i>
 									</button>
 								</td>
+							</td>
+							<td>
+								<label for="estado">CAMBIO_ESTADO</label>
+								<select name="estado" id="estado">
+									<option value="PRODUCCION">PRODUCCION</option>
+									<option value="INGRESADO">INGRESADO</option>
+									<option value="ENTREGADO">ENTREGADO</option>
+									<option value="TERMINADO">TERMINADO</option>
+									<option value="ESTAMPADO">ESTAMPADO</option>
+								</select>
+							</td>
 							</tr>
 							<tr class="text-center" >
 								<td>3</td>
 								<td>340987651</td>
 								<td>Product name</td>
-								<td>Product brand</td>
+								<td>ENTREGADO</td>
 								<td>$100.00 USD</td>
 								<td>
 									<button type="button" class="btn btn-success">
@@ -177,12 +199,23 @@
 	  									<i class="far fa-trash-alt"></i>
 									</button>
 								</td>
+								</td>
+								<td>
+									<label for="estado">CAMBIO_ESTADO</label>
+									<select name="estado" id="estado">
+										<option value="PRODUCCION">PRODUCCION</option>
+										<option value="INGRESADO">INGRESADO</option>
+										<option value="ENTREGADO">ENTREGADO</option>
+										<option value="TERMINADO">TERMINADO</option>
+										<option value="ESTAMPADO">ESTAMPADO</option>
+									</select>
+								</td>
 							</tr>
 							<tr class="text-center" >
 								<td>4</td>
 								<td>109824321</td>
 								<td>Product name</td>
-								<td>Product brand</td>
+								<td>TERMINADO</td>
 								<td>$12.00 USD</td>
 								<td>
 									<button type="button" class="btn btn-success">
@@ -195,6 +228,17 @@
 	  									<i class="far fa-trash-alt"></i>
 									</button>
 								</td>
+							</td>
+							<td>
+								<label for="estado">CAMBIO_ESTADO</label>
+								<select name="estado" id="estado">
+									<option value="PRODUCCION">PRODUCCION</option>
+									<option value="INGRESADO">INGRESADO</option>
+									<option value="ENTREGADO">ENTREGADO</option>
+									<option value="TERMINADO">TERMINADO</option>
+									<option value="ESTAMPADO">ESTAMPADO</option>
+								</select>
+							</td>
 							</tr>
 						</tbody>
 					</table>
