@@ -26,15 +26,15 @@
 }
 
 :root{
-	--color-one: #14111A;
-	--color-two: #06030D;
+	--color-one: #6060ea;
+	--color-two: #6060ea;
 	--color-three: #2F2A3D;
 
 	--color-four: #EEEEEE;
-	--color-five: #D51944;
+	--color-five: #c62047cb;
 	--color-six: #6E6C74;
 
-	--form-color: #004f45;
+	--form-color: #03030b;
 }
 
 body,html{
