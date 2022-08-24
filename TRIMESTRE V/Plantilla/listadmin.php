@@ -1,9 +1,19 @@
+<?php
+Include("conexion/conectar.php");
+
+$cone = new Conexion();
+$c = $cone->conectando();
+$Query = "select * from clientes";
+$ejecuta = mysqli_query($c,$Query);
+$arreglo = mysqli_fetch_array($ejecuta);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>List admin</title>
+	<title>Lista de Clientes</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -57,7 +67,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
 							</ul>
 						</li>
 
@@ -65,7 +75,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
 							</ul>
 						</li>
 
@@ -116,16 +126,24 @@
 							<tr class="text-center roboto-medium">
 								<th>#</th>
 								<th>NAME</th>
-								<th>LAST NAME</th>
+								<th>N° DOCUMENTO</th>
 								<th>UPDATE</th>
 								<th>DELETE</th>
 							</tr>
 						</thead>
+						<?php
+
+						if($arreglo==0){
+							echo "no hay registros";
+						}else{
+							do{
+						?>
+
 						<tbody>
 							<tr class="text-center" >
-								<td>1</td>
-								<td>Admin name</td>
-								<td>Admin last name</td>
+								<td><?php echo $arreglo[0]?></td>
+								<td><?php echo $arreglo[1]?></td>
+								<td><?php echo $arreglo[3]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
@@ -138,54 +156,10 @@
 									</button>
 								</td>
 							</tr>
-							<tr class="text-center" >
-								<td>2</td>
-								<td>Admin name</td>
-								<td>Admin last name</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>3</td>
-								<td>Admin name</td>
-								<td>Admin last name</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>4</td>
-								<td>Admin name</td>
-								<td>Admin last name</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</tr>
+							<?php
+							}while($arreglo = mysqli_fetch_array($ejecuta));
+							}
+							?>
 						</tbody>
 					</table>
 				</div>

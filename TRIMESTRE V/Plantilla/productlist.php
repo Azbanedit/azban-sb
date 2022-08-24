@@ -1,3 +1,13 @@
+<?php
+Include("conexion/conectar.php");
+
+$cone = new Conexion();
+$c = $cone->conectando();
+$Query = "select * from clientes";
+$ejecuta = mysqli_query($c,$Query);
+$arreglo = mysqli_fetch_array($ejecuta);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -57,7 +67,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
 							</ul>
 						</li>
 
@@ -65,7 +75,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
 							</ul>
 						</li>
 
@@ -141,13 +151,21 @@
 								<th>CAMBIAR_ESTADO</th>
 							</tr>
 						</thead>
+						<?php
+
+						if($arreglo==0){
+							echo "no hay registros";
+						}else{
+							do{
+						?>
+
 						<tbody>
 							<tr class="text-center" >
-								<td>1</td>
-								<td>012342567</td>
-								<td>Product name</td>
-								<td>PRODUCCION</td>
-								<td>$7.00 USD</td>
+								<td><?php echo $arreglo[0]?></td>
+								<td><?php echo $arreglo[0]?></td>
+								<td><?php echo $arreglo[1]?></td>
+								<td><?php echo $arreglo[2]?></td>
+								<td><?php echo $arreglo[3]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
@@ -172,99 +190,10 @@
 									<input type="submit" value="ACTUALIZAR">
 								</td>
 							</tr>
-							<tr class="text-center" >
-								<td>2</td>
-								<td>987654234</td>
-								<td>Product name</td>
-								<td>INGRESADO</td>
-								<td>$717.00 USD</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</td>
-							<td>
-								<label for="estado">CAMBIO_ESTADO</label>
-								<select name="estado" id="estado">
-									<option value="VACIO"></option>
-									<option value="PRODUCCION">PRODUCCION</option>
-									<option value="INGRESADO">INGRESADO</option>
-									<option value="ENTREGADO">ENTREGADO</option>
-									<option value="TERMINADO">TERMINADO</option>
-									<option value="ESTAMPADO">ESTAMPADO</option>
-								</select>
-								<input type="submit" value="ACTUALIZAR">
-							</td>
-							</tr>
-							<tr class="text-center" >
-								<td>3</td>
-								<td>340987651</td>
-								<td>Product name</td>
-								<td>ENTREGADO</td>
-								<td>$100.00 USD</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-								</td>
-								<td>
-									<label for="estado">CAMBIO_ESTADO</label>
-									<select name="estado" id="estado">
-										<option value="VACIO"></option>
-										<option value="PRODUCCION">PRODUCCION</option>
-										<option value="INGRESADO">INGRESADO</option>
-										<option value="ENTREGADO">ENTREGADO</option>
-										<option value="TERMINADO">TERMINADO</option>
-										<option value="ESTAMPADO">ESTAMPADO</option>
-									</select>
-									<input type="submit" value="ACTUALIZAR">
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>4</td>
-								<td>109824321</td>
-								<td>Product name</td>
-								<td>TERMINADO</td>
-								<td>$12.00 USD</td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</td>
-							<td>
-								<label for="estado">CAMBIO_ESTADO</label>
-								<select name="estado" id="estado">
-									<option value="VACIO"></option>
-									<option value="PRODUCCION">PRODUCCION</option>
-									<option value="INGRESADO">INGRESADO</option>
-									<option value="ENTREGADO">ENTREGADO</option>
-									<option value="TERMINADO">TERMINADO</option>
-									<option value="ESTAMPADO">ESTAMPADO</option>
-								</select>
-								<input type="submit" value="ACTUALIZAR">
-							</td>
-							</tr>
+							<?php
+							}while($arreglo = mysqli_fetch_array($ejecuta));
+						}
+							?>
 						</tbody>
 					</table>
 				</div>
