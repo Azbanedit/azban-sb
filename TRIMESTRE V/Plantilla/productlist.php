@@ -13,7 +13,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>List products</title>
+	<title>Lista Productos</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -67,7 +67,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
 							</ul>
 						</li>
 
@@ -75,7 +75,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Lista Productos</a></li>
 							</ul>
 						</li>
 
@@ -107,6 +107,23 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				</p>
 			</div>
 			<div class="text-center">
+				<table class="table ">
+					<thead>
+						<tr>
+							<th class="text-left">
+								<button type="button" class="btn btn-dark"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>                   
+							
+							</th>
+							<th class="text-center" >
+								<div class="marco">
+									<button type="submit" class="btn btn-primary"> <i class="fa fa-list-ul" aria-hidden="true"></i> Listar</button>
+									<button type="button" class="btn btn-danger"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button>
+								</div>
+							</th>
+						</tr>
+					</thead>
+            	</table>
+				<br>
 				<label for="estado">Tipo de busqueda</label>
 				<select name="estado" id="estado">
 					<option value="VACIO"></option>
@@ -117,12 +134,11 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				</select>
 				<br>
 				<br>
-				<P>
+				<div>
 					<label for="FIND">Valor de busqueda</label>
-           			<input type="text" name="find" id="find" maxlength="60" minlength="10" size="30" placeholder="Valor de busqueda"
-                	autofocus required>
-					<input type="submit" value="Buscar">
-				</P>
+           			<input type="text" name="find" id="find" maxlength="60" minlength="10" size="30" placeholder="Valor de busqueda" autofocus required>
+					<button class="btn btn-outline-dark"  type="submit" name="buscar" id="buscar"> Buscar</button>
+				</div>
 			</div>
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
@@ -187,7 +203,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 										<option value="TERMINADO">TERMINADO</option>
 										<option value="ESTAMPADO">ESTAMPADO</option>
 									</select>
-									<input type="submit" value="ACTUALIZAR">
+									<button type="submit" value="ACTUALIZAR">Actualizar</button>
 								</td>
 							</tr>
 							<?php

@@ -1,11 +1,34 @@
 <?php
 Include("conexion/conectar.php");
+if($_POST){
+    $obj->nombrecliente = $_POST['nombrecliente'];
+}
 
 $cone = new Conexion();
 $c = $cone->conectando();
-$Query = "select * from clientes";
+$Query = "select count(*) as totalRegistros from clientes";
 $ejecuta = mysqli_query($c,$Query);
 $arreglo = mysqli_fetch_array($ejecuta);
+$totalRegistros = $arreglo["totalRegistros"];
+echo $totalRegistros;
+
+$maximoRegistros = 5;
+if(empty($_GET['pagina'])){
+    $pagina=1;
+}else{
+    $pagina=$_GET['pagina'];
+}
+$desde = ($pagina-1)*$maximoRegistros;
+$totalPaginas=ceil($totalRegistros/$maximoRegistros);
+//echo $totalPaginas;
+if(isset($_POST['buscar'])){
+    $query2="select * from clientes where nombrecliente like '%$obj->nombrecliente%' limit $desde, $maximoRegistros";
+    $ejecuta2 = mysqli_query($c,$query2);
+    $arreglo2 = mysqli_fetch_array($ejecuta2);
+}else{$query2="select * from clientes limit $desde, $maximoRegistros";
+	$ejecuta2 = mysqli_query($c,$query2);
+	$arreglo2 = mysqli_fetch_array($ejecuta2);
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +90,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
 							</ul>
 						</li>
 
@@ -100,11 +123,45 @@ $arreglo = mysqli_fetch_array($ejecuta);
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-users fa-fw"></i> &nbsp; LIST ADMIN
+					<i class="fas fa-users fa-fw"></i> &nbsp; LISTA CLIENTES
 				</h3>
 				<p class="text-justify">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
 				</p>
+			</div>
+			<div class="text-center">
+				<table class="table ">
+					<thead>
+						<tr>
+							<th class="text-left">
+								<button type="button" class="btn btn-dark"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>                   
+							
+							</th>
+							<th class="text-center" >
+								<div class="marco">
+									<button type="submit" class="btn btn-primary"> <i class="fa fa-list-ul" aria-hidden="true"></i> Listar</button>
+									<button type="button" class="btn btn-danger"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button>
+								</div>
+							</th>
+						</tr>
+					</thead>
+            	</table>
+				<label for="estado">Tipo de busqueda</label>
+				<select name="estado" id="estado">
+					<option value="VACIO"></option>
+					<option value="DOCUMENTO">DOCUMENTO</option>
+					<option value="NOMBRE">NOMBRE</option>
+					<option value="CODIGO">CODIGO</option>
+				</select>
+				<br>
+				<br>
+				<div>
+					<label for="FIND">Valor de busqueda</label>
+					<form class="justify-content-center" role="search">
+						<input type="text" name="find" id="find" maxlength="60" minlength="10" size="30" placeholder="Valor de busqueda" autofocus required>
+						<button class="btn btn-outline-dark"  type="submit" name="buscar" id="buscar">Buscar</button>
+					</form>
+				</div>
 			</div>
 			
 			<div class="container-fluid">
@@ -113,7 +170,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 						<a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; NEW ADMIN</a>
 					</li>
 					<li>
-						<a class="active" href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; LIST ADMIN</a>
+						<a class="active" href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; LISTA CLIENTES</a>
 					</li>
 				</ul>	
 			</div>
@@ -133,7 +190,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 						</thead>
 						<?php
 
-						if($arreglo==0){
+						if($arreglo2==0){
 							echo "no hay registros";
 						}else{
 							do{
@@ -141,9 +198,9 @@ $arreglo = mysqli_fetch_array($ejecuta);
 
 						<tbody>
 							<tr class="text-center" >
-								<td><?php echo $arreglo[0]?></td>
-								<td><?php echo $arreglo[1]?></td>
-								<td><?php echo $arreglo[3]?></td>
+								<td><?php echo $arreglo2[0]?></td>
+								<td><?php echo $arreglo2[1]?></td>
+								<td><?php echo $arreglo2[3]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
@@ -157,7 +214,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 								</td>
 							</tr>
 							<?php
-							}while($arreglo = mysqli_fetch_array($ejecuta));
+							}while($arreglo2 = mysqli_fetch_array($ejecuta2));
 							}
 							?>
 						</tbody>
@@ -165,15 +222,37 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				</div>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
+						<?php 
+						if($pagina!=1){
+						?>
+						<li class="page-item ">
+							<a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
 						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
 						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
+							<a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><<</a>
 						</li>
+						<?php
+						}
+						for($i=1; $i<=$totalPaginas; $i++){
+							if($i==$pagina){
+								echo'<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';    
+							}
+							else{
+								echo'<li class="page-item "><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>'; 
+							}
+						}
+						if($pagina !=$totalPaginas){
+						?>
+						
+						<li class="page-item">
+							<a class="page-link" href="?pagina=<?php echo $pagina+1; ?>">>></a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">></a>
+						</li>
+						<?php
+						}
+						?>
 					</ul>
 				</nav>
 			</div>

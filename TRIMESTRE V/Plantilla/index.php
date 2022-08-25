@@ -1,3 +1,13 @@
+<?php
+Include("../conexion/conectar.php")
+
+$cone = new Conexion();
+$c = $cone->conectado();
+$Query = "select * from documentos"
+$ejecuta = mysqli_query($c,$Query);
+$arreglo = mysqly_fetch_array($ejecuta);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
