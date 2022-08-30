@@ -1,0 +1,118 @@
+*{
+    margin:0px ;
+    font-family:'Times New Roman', Times, serif;
+  }
+  
+  #general{
+    width: 1200px;
+    margin: 0 auto;
+  }
+  
+  header{
+    width: 100%;
+    color: white;
+  }
+  
+  body{
+    background-color: #232323;
+  }
+  
+  #general{
+      background: rgb(206, 212, 225);
+  }
+  
+  #registerHeader{
+      margin: 0;
+      padding: 5px;
+      background-color: rgb(255, 255, 255);
+      color:rgb(0, 0, 0);
+      font-size: 20px;
+    }
+    
+  
+  #houseIcon{
+    color: #df0505;
+    text-align: left;
+  }
+  
+  #color-line{
+    color: yellow;
+  }
+  
+  .aling-buttons{
+    text-align: right;
+    margin-top:5px;
+  }
+  
+  div.row{
+    margin-top: 5px;
+  }
+  
+  .width-100-buttonPay{
+    width:100% !important;
+  }
+  
+  label{
+    color:white;
+  }
+  
+  
+  #margin-top{
+    margin-top: 0!important;
+  }
+  
+  #checkAddresser{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  #addAddress{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .buttonColors{
+    background-color: #F92438;
+    color: #FFFFFF;
+    border:0px;
+    height: 38px;
+  }
+  
+  select{
+    background-color: #2B2E34;
+    color: white;
+  }
+  
+  
+  input{
+    background-color: #2B2E34;
+    color: white;
+  }
+  
+  #bg-form-group{
+    background-color: #2B2E34;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+  }
+  #eliminarPedido{
+    text-align: right;
+  }
+
+  footer{
+    background-color: gainsboro;
+    color: #232323;
+    text-align: center;
+  }
+
+  .colorAsterisco{
+    color: #df0505;
+    width: 200px;
+    height: 500px;
+    border-radius: 1 solid chartreuse;
+  }
+
+  #asterisco{
+    background-color: aqua;
+    border-radius: 10px;
+  }

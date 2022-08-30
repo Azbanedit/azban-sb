@@ -1,13 +1,3 @@
-<?php
-Include("./conexion/conectar.php");
-
-$cone = new Conexion();
-$c = $cone->conectando();
-$query = "select * from clientes";
-$ejecuta = mysqli_query($c,$query);
-$arreglo = mysqli_fetch_array($ejecuta);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,18 +37,17 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				<i class="fas fa-user-circle fa-5x"></i>
 			</p>
 			<p class="text-center">
-				Log in with your account
-			</p>
+				Ingreso al Workspace Azban
 			<form action="">
 				<div class="form-group">
-					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; User</label>
+					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Correo</label>
 					<input type="text" class="form-control" id="UserName">
 				</div>
 				<div class="form-group">
-					<label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Password</label>
+					<label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Constraseña</label>
 					<input type="password" class="form-control" id="UserPassword">
 				</div>
-				<a href="home.html" class="btn-login text-center">LOG IN</a>
+				<a href="./Vistas/home.html" class="btn-login text-center">Ingresar</a>
 			</form>
 		</div>
 	</div>

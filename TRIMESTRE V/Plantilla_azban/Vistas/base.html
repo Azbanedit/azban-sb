@@ -1,19 +1,9 @@
-<?php
-Include("conexion/conectar.php");
-
-$cone = new Conexion();
-$c = $cone->conectando();
-$query = "select * from clientes";
-$ejecuta = mysqli_query($c,$query);
-$arreglo = mysqli_fetch_array($ejecuta);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista Productos</title>
+	<title>Base</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -51,9 +41,9 @@ $arreglo = mysqli_fetch_array($ejecuta);
 			<div class="full-box nav-lateral-content">
 				<figure class="full-box nav-lateral-avatar">
 					<i class="far fa-times-circle show-nav-lateral"></i>
-					<img src="./assets/avatar/Avatar1.png" class="img-fluid" alt="Avatar">
+					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						AZBAN <br><small class="roboto-condensed-light">Pagina Transaccional</small>
+						Carlos Alfaro <br><small class="roboto-condensed-light">Vendedor</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -67,7 +57,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
+								<li><a href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
 							</ul>
 						</li>
 
@@ -75,7 +65,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Lista Productos</a></li>
+								<li><a href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
 							</ul>
 						</li>
 
@@ -100,140 +90,15 @@ $arreglo = mysqli_fetch_array($ejecuta);
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PRODUCTOS
+					<i class="fas fa-fire fa-fw"></i> &nbsp; BASE TEMPLATE
 				</h3>
 				<p class="text-justify">
-					Listado y estado de productos para su actualizacion.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
 				</p>
-			</div>
-			<div class="text-center">
-				<table class="table ">
-					<thead>
-						<tr>
-							<th class="text-left">
-								<button type="button" class="btn btn-dark"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>                   
-							
-							</th>
-							<th class="text-center" >
-								<div class="marco">
-									<button type="submit" class="btn btn-primary"> <i class="fa fa-list-ul" aria-hidden="true"></i> Listar</button>
-									<button type="button" class="btn btn-danger"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button>
-								</div>
-							</th>
-						</tr>
-					</thead>
-            	</table>
-				<br>
-				<label for="estado">Tipo de busqueda</label>
-				<select name="estado" id="estado">
-					<option value="VACIO"></option>
-					<option value="DOCUMENTO">DOCUMENTO</option>
-					<option value="ESTADO">ESTADO</option>
-					<option value="NOMBRE">NOMBRE</option>
-					<option value="CODIGO">CODIGO</option>
-				</select>
-				<br>
-				<br>
-				<div>
-					<label for="FIND">Valor de busqueda</label>
-           			<input type="text" name="find" id="find" maxlength="60" minlength="10" size="30" placeholder="Valor de busqueda" autofocus required>
-					<button class="btn btn-outline-dark"  type="submit" name="buscar" id="buscar"> Buscar</button>
-				</div>
-			</div>
-			<div class="container-fluid">
-				<ul class="full-box list-unstyled page-nav-tabs">
-					<li>
-						<a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO_PRODUCTO</a>
-					</li>
-					<li>
-						<a class="active" href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA_PRODUCTOS</a>
-					</li>
-				</ul>	
 			</div>
 			
 			<!-- Content here-->
-			<div class="container-fluid">
-				<div class="table-responsive">
-					<table class="table table-dark table-sm">
-						<thead>
-							<tr class="text-center roboto-medium">
-								<th>CODIGO</th>
-								<th>NOMBRE</th>
-								<th>ESTADO</th>
-								<th>PRECIO</th>
-								<th>ACTUALIZAR</th>
-								<th>DELETE</th>
-								<th>CAMBIAR_ESTADO</th>
-							</tr>
-						</thead>
-						<?php
-
-						if($arreglo==0){
-							echo "no hay registros";
-						}else{
-							do{
-						?>
-
-						<tbody>
-							<tr class="text-center" >
-								<td><?php echo $arreglo[0]?></td>
-								<td><?php echo $arreglo[1]?></td>
-								<td><?php echo $arreglo[2]?></td>
-								<td><?php echo $arreglo[3]?></td>
-								<td>
-									<button type="button" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>
-										
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning">
-	  									<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-								<td>
-									<label for="estado">CAMBIO_ESTADO</label>
-									<select name="estado" id="estado">
-										<option value="VACIO"></option>
-										<?php
-											$query = "SELECT estado FROM estado_pedido ORDER BY id";
-											$estados = mysqli_query($c,$query);
-											while($estado = mysqli_fetch_array($estados)){
-										?>
-												<!-- <option value="PRODUCCION">PRODUCCION</option> -->
-												<option value="<?php echo $estado[0]?>" <?php () ?>>
-													<?php echo $estado[0]?>
-												</option>
-
-												
-										<?php
-											}
-										?>
-									</select>
-									<button type="submit" value="ACTUALIZAR">Actualizar</button>
-								</td>
-							</tr>
-							<?php
-							}while($arreglo = mysqli_fetch_array($ejecuta));
-						}
-							?>
-						</tbody>
-					</table>
-				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
+			
 
 		</section>
 
