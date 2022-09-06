@@ -201,7 +201,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 											while($estado = mysqli_fetch_array($estados)){
 										?>
 												<!-- <option value="PRODUCCION">PRODUCCION</option> -->
-												<option value="<?php echo $estado[0]?>" <?php () ?>>
+												<option value="<?php echo $estado[0]?>">
 													<?php echo $estado[0]?>
 												</option>
 
