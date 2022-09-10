@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Home</title>
+	<title>Base</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -50,22 +50,22 @@
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
+							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
 							<ul>
-								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
+								<li><a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; Registro</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
 
@@ -90,49 +90,14 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
+					<i class="fas fa-fire fa-fw"></i> &nbsp; BASE TEMPLATE
 				</h3>
 				<p class="text-justify">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
 				</p>
 			</div>
 			
-			<!-- Content -->
-			<div class="full-box tile-container">
-
-				<a href="listadmin.php" class="tile">
-					<div class="tile-tittle">Lista Clientes</div>
-					<div class="tile-icon">
-						<i class="fas fa-users fa-fw"></i>
-						<p>17 Registered</p>
-					</div>
-				</a>
-
-				<a href="productlist.php" class="tile">
-					<div class="tile-tittle">Lista de Productos</div>
-					<div class="tile-icon">
-						<i class="fas fa-boxes fa-fw"></i>
-						<p>50 Registered</p>
-					</div>
-				</a>
-
-				<a href="#" class="tile">
-					<div class="tile-tittle">Lista Clientes</div>
-					<div class="tile-icon">
-						<i class="fas fa-child fa-fw"></i>
-						<p>150 Registered</p>
-					</div>
-				</a>
-
-				<a href="#" class="tile">
-					<div class="tile-tittle">List providers</div>
-					<div class="tile-icon">
-						<i class="fas fa-truck-moving fa-fw"></i>
-						<p>9 Registered</p>
-					</div>
-				</a>
-
-			</div>
+			<!-- Content here-->
 			
 
 		</section>

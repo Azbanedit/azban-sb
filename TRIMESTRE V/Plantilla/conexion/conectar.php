@@ -10,8 +10,8 @@
             return $con;
         }
     }
-    $obj=new Conexion();
+   /* $obj=new Conexion();
         if($obj->conectando()){
             echo "conectado al servidor";
-        }
+        }*/
 ?>

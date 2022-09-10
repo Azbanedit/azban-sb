@@ -1,11 +1,11 @@
 <?php
-Include("./conexion/conectar.php");
+Include("../conexion/conectar.php")
 
 $cone = new Conexion();
-$c = $cone->conectando();
-$query = "select * from clientes";
-$ejecuta = mysqli_query($c,$query);
-$arreglo = mysqli_fetch_array($ejecuta);
+$c = $cone->conectado();
+$Query = "select * from documentos"
+$ejecuta = mysqli_query($c,$Query);
+$arreglo = mysqly_fetch_array($ejecuta);
 ?>
 
 <!DOCTYPE html>

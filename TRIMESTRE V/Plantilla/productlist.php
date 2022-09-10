@@ -1,13 +1,37 @@
 <?php
 Include("conexion/conectar.php");
+if($_POST){
+	$Nombre = $_POST['Id'];
+}
 
 $cone = new Conexion();
 $c = $cone->conectando();
-$query = "select * from clientes";
-$ejecuta = mysqli_query($c,$query);
+$Query = "select count(*) as totalRegistros from clientes";
+$ejecuta = mysqli_query($c,$Query);
 $arreglo = mysqli_fetch_array($ejecuta);
-?>
+$totalRegistros = $arreglo["totalRegistros"];
+echo $totalRegistros;
 
+$maximoRegistros = 5;
+if(empty($_GET['pagina'])){
+    $pagina=1;
+}else{
+    $pagina=$_GET['pagina'];
+}
+$desde = ($pagina-1)*$maximoRegistros;
+$totalPaginas=ceil($totalRegistros/$maximoRegistros);
+//echo $totalPaginas;
+if(isset($_POST['buscar'])){
+	
+    $query2="select * from clientes where Nombre like '%$Nombre%' limit $desde, $maximoRegistros";
+    $ejecuta2 = mysqli_query($c,$query2);
+    $arreglo2 = mysqli_fetch_array($ejecuta2);
+}else{
+	$query2="select * from clientes limit $desde, $maximoRegistros";
+	$ejecuta2 = mysqli_query($c,$query2);
+	$arreglo2 = mysqli_fetch_array($ejecuta2);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -60,22 +84,22 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
+							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
 							<ul>
-								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Lista Productos</a></li>
+								<li><a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; Registro</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
 
@@ -98,6 +122,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 			</nav>
 
 			<!-- Page header -->
+			<form action="" name="listadmin" method="POST">
 			<div class="full-box page-header">
 				<h3 class="text-left">
 					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PRODUCTOS
@@ -135,18 +160,21 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				<br>
 				<br>
 				<div>
-					<label for="FIND">Valor de busqueda</label>
-           			<input type="text" name="find" id="find" maxlength="60" minlength="10" size="30" placeholder="Valor de busqueda" autofocus required>
-					<button class="btn btn-outline-dark"  type="submit" name="buscar" id="buscar"> Buscar</button>
+					<label >Valor de busqueda</label>
+					<form class="justify-content-center" role="search">
+						<input type="search" name="Id"  maxlength="60" minlength="1" size="30" placeholder="Valor de busqueda">
+						<button class="btn btn-outline-dark"  type="submit" name="buscar" id="buscar">Buscar</button>
+					</form>				
 				</div>
 			</div>
+
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO_PRODUCTO</a>
+						<a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO_PRODUCTO</a>
 					</li>
 					<li>
-						<a class="active" href="productlist.html"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA_PRODUCTOS</a>
+						<a class="active" href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA_PRODUCTOS</a>
 					</li>
 				</ul>	
 			</div>
@@ -157,6 +185,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 					<table class="table table-dark table-sm">
 						<thead>
 							<tr class="text-center roboto-medium">
+								<th>#</th>
 								<th>CODIGO</th>
 								<th>NOMBRE</th>
 								<th>ESTADO</th>
@@ -168,7 +197,7 @@ $arreglo = mysqli_fetch_array($ejecuta);
 						</thead>
 						<?php
 
-						if($arreglo==0){
+						if($arreglo2==0){
 							echo "no hay registros";
 						}else{
 							do{
@@ -176,10 +205,11 @@ $arreglo = mysqli_fetch_array($ejecuta);
 
 						<tbody>
 							<tr class="text-center" >
-								<td><?php echo $arreglo[0]?></td>
-								<td><?php echo $arreglo[1]?></td>
-								<td><?php echo $arreglo[2]?></td>
-								<td><?php echo $arreglo[3]?></td>
+								<td><?php echo $arreglo2[0]?></td>
+								<td><?php echo $arreglo2[0]?></td>
+								<td><?php echo $arreglo2[1]?></td>
+								<td><?php echo $arreglo2[2]?></td>
+								<td><?php echo $arreglo2[3]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
@@ -195,26 +225,17 @@ $arreglo = mysqli_fetch_array($ejecuta);
 									<label for="estado">CAMBIO_ESTADO</label>
 									<select name="estado" id="estado">
 										<option value="VACIO"></option>
-										<?php
-											$query = "SELECT estado FROM estado_pedido ORDER BY id";
-											$estados = mysqli_query($c,$query);
-											while($estado = mysqli_fetch_array($estados)){
-										?>
-												<!-- <option value="PRODUCCION">PRODUCCION</option> -->
-												<option value="<?php echo $estado[0]?>">
-													<?php echo $estado[0]?>
-												</option>
-
-												
-										<?php
-											}
-										?>
+										<option value="PRODUCCION">PRODUCCION</option>
+										<option value="INGRESADO">INGRESADO</option>
+										<option value="ENTREGADO">ENTREGADO</option>
+										<option value="TERMINADO">TERMINADO</option>
+										<option value="ESTAMPADO">ESTAMPADO</option>
 									</select>
 									<button type="submit" value="ACTUALIZAR">Actualizar</button>
 								</td>
 							</tr>
 							<?php
-							}while($arreglo = mysqli_fetch_array($ejecuta));
+							}while($arreglo2 = mysqli_fetch_array($ejecuta2));
 						}
 							?>
 						</tbody>
@@ -222,19 +243,41 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				</div>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
+						<?php 
+						if($pagina!=1){
+						?>
+						<li class="page-item ">
+							<a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
 						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
 						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
+							<a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><<</a>
 						</li>
+						<?php
+						}
+						for($i=1; $i<=$totalPaginas; $i++){
+							if($i==$pagina){
+								echo'<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';    
+							}
+							else{
+								echo'<li class="page-item "><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>'; 
+							}
+						}
+						if($pagina !=$totalPaginas){
+						?>
+						
+						<li class="page-item">
+							<a class="page-link" href="?pagina=<?php echo $pagina+1; ?>">>></a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">></a>
+						</li>
+						<?php
+						}
+						?>
 					</ul>
 				</nav>
 			</div>
-
+			</form>
 		</section>
 
 		<!-- Help Modal -->

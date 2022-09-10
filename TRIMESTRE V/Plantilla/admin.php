@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>New product</title>
+	<title>New admin</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -50,22 +50,22 @@
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
+							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
-								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista Clientes</a></li>
+								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Products <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-box-open fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
 							<ul>
-								<li><a href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
-								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Lista Productos</a></li>
+								<li><a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; Registro</a></li>
+								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Listado </a></li>
 							</ul>
 						</li>
 
@@ -90,106 +90,96 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-box fa-fw"></i> &nbsp; NEW PRODUCT
+					<i class="fas fa-user-plus fa-fw"></i> &nbsp; NEW ADMIN
 				</h3>
 				<p class="text-justify">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
 				</p>
 			</div>
-
+			
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="product.html"><i class="fas fa-box fa-fw"></i> &nbsp; NEW PRODUCT</a>
+						<a class="active" href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; NEW ADMIN</a>
 					</li>
 					<li>
-						<a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA PRODUCTOS</a>
+						<a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; LISTA CLIENTES</a>
 					</li>
 				</ul>	
 			</div>
 			
-			<!-- Content here-->
+			<!-- Content -->
 			<div class="container-fluid">
 				<form action="" class="form-neon" autocomplete="off">
 					<fieldset>
-						<legend><i class="fas fa-box-open"></i> &nbsp; Basic information</legend>
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="ProductCode" class="bmd-label-floating">Code</label>
-										<input type="text" pattern="[a-zA-Z0-9]{1,25}" class="form-control" id="ProductCode" maxlength="25">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="ProductName" class="bmd-label-floating">Name</label>
-										<input type="text" pattern="[a-zA-Z0-9 ]{1,30}" class="form-control" id="ProductName" maxlength="30">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="ProductBrand" class="bmd-label-floating">Brand</label>
-										<input type="text" pattern="[a-zA-Z0-9]{1,25}" class="form-control" id="ProductBrand" maxlength="25">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="ProductModel" class="bmd-label-floating">Model</label>
-										<input type="text" pattern="[a-zA-z0-9 ]{1,20}" class="form-control" id="ProductModel" maxlength="20">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="ProducPrice" class="bmd-label-floating">Price</label>
-										<input type="num" pattern="[0-9.]{1,15}" class="form-control" id="ProducPrice" maxlength="15">
-									</div>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-					<br><br><br>
-					<fieldset>
-						<legend><i class="fas fa-truck-loading"></i> &nbsp; Provider & Category</legend>
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="ProductProvider" class="bmd-label-floating">Provider</label>
-										<select class="form-control" id="ProductProvider">
-											<option>Provider 1</option>
-											<option>Provider 2</option>
-											<option>Provider 3</option>
-											<option>Provider 4</option>
-											<option>Provider 5</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="ProductCategory" class="bmd-label-floating">Category</label>
-										<select class="form-control" id="ProductCategory">
-											<option>Category 1</option>
-											<option>Category 2</option>
-											<option>Category 3</option>
-											<option>Category 4</option>
-											<option>Category 5</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-					<br><br><br>
-					<fieldset>
-						<legend><i class="far fa-image"></i> &nbsp; Image</legend>
+						<legend><i class="far fa-address-card"></i> &nbsp; Personal information</legend>
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-12">
 									<div class="form-group">
-										<label for="ProductImg" class="bmd-label-floating">Product image</label>
-										<input type="file" class="form-control-file" id="ProductImg">
-										<small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+										<label for="AdminDNI" class="bmd-label-floating">DNI</label>
+										<input type="text" pattern="[0-9]{1,20}" class="form-control" id="AdminDNI" maxlength="20">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="AdminName" class="bmd-label-floating">Name</label>
+										<input type="text" pattern="[a-zA-z ]{1,25}" class="form-control" id="AdminName" maxlength="25">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="AdminLastName" class="bmd-label-floating">Last Name</label>
+										<input type="text" pattern="[a-zA-z ]{1,25}" class="form-control" id="AdminLastName" maxlength="25">
+									</div>
+								</div>
+								<div class="col-12">
+									<div style="padding: 20px 0 5px 0; color: #004f45; ">Gender</div>
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="AdminGender" value="Male" checked>
+												<i class="fas fa-male fa-fw"></i> &nbsp; Male
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="AdminGender" id="optionsRadios2" value="Female">
+												<i class="fas fa-female fa-fw"></i> &nbsp; Female
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<legend><i class="fas fa-user-lock"></i> &nbsp; Account information</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="UserName" class="bmd-label-floating">User name</label>
+										<input type="text" pattern="[a-zA-Z]{1,15}" class="form-control" id="UserName" maxlength="15">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="Email" class="bmd-label-floating">Email</label>
+										<input type="email" class="form-control" id="Email" maxlength="50">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="Password1" class="bmd-label-floating">Password</label>
+										<input type="password" class="form-control" id="Password1" maxlength="50">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="Password2" class="bmd-label-floating">Repeat password</label>
+										<input type="password" class="form-control" id="Password2" maxlength="50">
 									</div>
 								</div>
 							</div>
@@ -201,7 +191,8 @@
 						<button type="submit" class="btn btn-success"><i class="far fa-save"></i> &nbsp; SAVE</button>
 					</p>
 				</form>
-			</div>	
+			</div>
+			
 
 		</section>
 
