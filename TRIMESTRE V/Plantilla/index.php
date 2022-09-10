@@ -1,7 +1,7 @@
 <?php
 include("../conexion/conectar.php")
 
-$cone = new Conexion();
+$cone = new Conexion(),
 $c = $cone->conectado();
 $Query = "select * from documentos"
 $ejecuta = mysqli_query($c,$Query);
