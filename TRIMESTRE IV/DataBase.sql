@@ -243,6 +243,11 @@ INSERT Historial_Pedidos (Id_Pedido, Id_Estado_Anterior, Id_Estado_Nuevo, Fecha_
 			(2, 2, 3, '2022-01-10 15:00'),
 			(3, 3, 4, '2022-01-10 15:14');
     
+INSERT Genero (Nombre)
+	VALUES ('Femenino'),
+			('Masculino'),
+            ('Niño'),
+            ('Unisex');
 #Colores
 #Departamentos
 #Producto

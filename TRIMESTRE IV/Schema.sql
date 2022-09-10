@@ -14,6 +14,11 @@ CREATE TABLE Tipos_Documentos(
 	Nombre_Tipo_Documento varchar(50) NOT NULL,
 	Abreviatura varchar(10) NOT NULL
     );
+
+CREATE TABLE Genero(
+	Id int unsigned auto_increment primary key NOT NULL,
+    Nombre varchar(40) NOT NULL
+);
     
 CREATE TABLE Clientes(
 	Id int unsigned auto_increment primary key NOT NULL,
@@ -35,7 +40,9 @@ CREATE TABLE Productos(
 	Descripcion varchar(1000) NOT NULL,
 	Activo boolean NOT NULL default 1,
 	Sigla varchar(10) NOT NULL,
-	Genero varchar(16) NOT NULL
+	Genero varchar(16) NOT NULL,
+    Id_genero int unsigned NOT NULL,
+    foreign key (Id_genero) references Genero (Id)
     );
     
 CREATE TABLE Medios_Pago(
@@ -75,6 +82,7 @@ CREATE TABLE Colores_X_Producto(
     foreign key (Id_Producto) references Productos (Id),
 	foreign key (Id_Color) references Colores (Id)
     );
+    
 
 CREATE TABLE Departamentos(
 	Id int unsigned auto_increment primary key NOT NULL,
@@ -138,19 +146,7 @@ CREATE TABLE Detalle_Pedido(
 	Genero varchar(12) NOT NULL,
 	Producto_Base boolean NOT NULL,
     foreign key (Id_Pedido) references Pedidos (Id),
-    foreign key (Id_Producto) references Productos (Id),
-    foreign key (Id_Talla) references Tallas (Id),
-    foreign key (Id_Color) references Colores (Id)
+    foreign key (Id_Producto) references Productos (Id)
 	);
+    
 
-
-CREATE TABLE Historial_Pedidos(
-	Id int unsigned auto_increment primary key NOT NULL,
-	Id_Pedido int unsigned NOT NULL,
-	Id_Estado_Anterior int unsigned NOT NULL,
-	Id_Estado_Nuevo int unsigned NOT NULL,
-	Fecha_Cambio datetime NOT NULL,
-	foreign key (Id_Estado_Anterior) references Estado_Pedido (Id),
-	foreign key (Id_Estado_Nuevo) references Estado_Pedido (Id),
-    foreign key (Id_Pedido) references Pedidos (Id)
-	);
