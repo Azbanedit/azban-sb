@@ -238,16 +238,12 @@ INSERT Detalle_Pedido (Id_Pedido, Id_Producto, Id_Color, Id_Talla, Estampado_Pri
     (28, 6, 1, 1, 'goku', NULL, NULL, 1, 53500, 5000, 'Mujer', 1);
     
 select * from estado_pedido;
-INSERT Historial_Pedidos (Id_Pedido, Id_Estado_Anterior, Id_Estado_Nuevo, Fecha_Cambio)
-	VALUES  (1, 1, 2, '2022-01-07 14:49'),
-			(2, 2, 3, '2022-01-10 15:00'),
-			(3, 3, 4, '2022-01-10 15:14');
-    
+
 INSERT Genero (Nombre)
-	VALUES ('Femenino'),
+	VALUES	('Femenino'),
 			('Masculino'),
-            ('Niño'),
-            ('Unisex');
+			('Niño'),
+			('Unisex');
 #Colores
 #Departamentos
 #Producto
