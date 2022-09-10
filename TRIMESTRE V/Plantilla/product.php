@@ -1,37 +1,12 @@
 <?php
-Include("conexion/conectar.php");
-if($_POST){
-	$Nombre = $_POST['Id'];
-}
+Include("./Conexion/conectar.php");
 
 $cone = new Conexion();
 $c = $cone->conectando();
-$Query = "select count(*) as totalRegistros from clientes";
-$ejecuta = mysqli_query($c,$Query);
-$arreglo = mysqli_fetch_array($ejecuta);
-$totalRegistros = $arreglo["totalRegistros"];
-echo $totalRegistros;
-
-$maximoRegistros = 5;
-if(empty($_GET['pagina'])){
-    $pagina=1;
-}else{
-    $pagina=$_GET['pagina'];
-}
-$desde = ($pagina-1)*$maximoRegistros;
-$totalPaginas=ceil($totalRegistros/$maximoRegistros);
-//echo $totalPaginas;
-if(isset($_POST['buscar'])){
-	
-    $query2="select * from clientes where Nombre like '%$Nombre%' limit $desde, $maximoRegistros";
-    $ejecuta2 = mysqli_query($c,$query2);
-    $arreglo2 = mysqli_fetch_array($ejecuta2);
-}else{
-	$query2="select * from clientes limit $desde, $maximoRegistros";
-	$ejecuta2 = mysqli_query($c,$query2);
-	$arreglo2 = mysqli_fetch_array($ejecuta2);
-}
+$query = "select * from tipos_documentos";
+$ejecuta = mysqli_query($c,$query);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -396,12 +371,18 @@ if(isset($_POST['buscar'])){
                                     </select> 
                                 </div>
                                 <div class="col-3">
-                                    <div id="margin-top" class="row">
-                                        <div class="col-6">
-                                            <button type="button" class="btn-outline-primary">Pago</button>
+                                    <div class="row">
+                                        <div class="col-6 form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Abono
+                                            </label>
                                         </div>
-                                        <div class="col-6"> 
-                                            <button type="button" class="btn-outline-primary">Abono</button>
+                                        <div class="col-6 form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Pago
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -425,12 +406,6 @@ if(isset($_POST['buscar'])){
                                     </svg>
                                 </button>
                             </div>
-                            <button id="asterisco">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="colorAsterisco bi bi-asterisk" viewBox="0 0 16 16">
-                                <path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"/>
-                                </svg>
-                
-                            </button>
                         </form>
                     </div>
 					<br><br>
