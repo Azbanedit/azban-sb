@@ -1,11 +1,11 @@
 <?php
-include("../conexion/conectar.php")
+include("../conexion/conectar.php");
 
 $cone = new Conexion();
 $c = $cone->conectado();
-$Query = "select * from documentos"
+$Query = "select * from tipos_documentos";
 $ejecuta = mysqli_query($c,$Query);
-$arreglo = mysqly_fetch_array($ejecuta);
+$arreglo = mysqli_fetch_array($ejecuta);
 ?>
 
 <!DOCTYPE html>
