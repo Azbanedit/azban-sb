@@ -1,8 +1,8 @@
 <?php
 include("../conexion/conectar.php");
 
-$cone = new Conexion();
-$c = $cone- > conectado();
+$cone = Conexion();
+$c = $cone->conectando();
 $Query = "select * from tipos_documentos"
 $ejecuta = mysqli_query($c,$Query);
 $arreglo = mysqli_fetch_array($ejecuta);
