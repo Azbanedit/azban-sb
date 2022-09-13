@@ -108,7 +108,7 @@ select * from clientes;
 select * from Tipos_Contacto;
 select * from Tipos_Documentos;
 
-INSERT INTO CLIENTES (Nombre, Id_Tipo_Documento, Numero_Documento, Celular, Id_Tipo_Contacto, Dato_Tipo_Contacto, Email, Fecha_creacion)
+INSERT INTO clientes (Nombre, Id_Tipo_Documento, Numero_Documento, Celular, Id_Tipo_Contacto, Dato_Tipo_Contacto, Email, Fecha_creacion)
 	VALUES ('Claudia Santos', 1, '63539510', '3174048518', 2, '3174048518', 'claudia@gmail.com','2022-01-07 13:48'),
 			('José Pestana', 1, '1104874194', '3135496552', 2, '3135496552', 'pestana@hotmail.com', '2022-01-07 14:47'),
             ('Jonathan Gómez', 1, '1144132600', '3157096164', 1, 'jowhas', 'jonathan@gmail.com', '2022-01-07 15:13' ),
