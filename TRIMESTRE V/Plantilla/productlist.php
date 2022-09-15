@@ -189,6 +189,7 @@ if(isset($_POST['buscar'])){
 								<th>DELETE</th>
 								<th>CAMBIAR_ESTADO</th>
 								<th>IMPRESION DE GUIA</th>
+							
 				
 							</tr>
 						</thead>
@@ -213,11 +214,15 @@ if(isset($_POST['buscar'])){
 										
 									</button>
 								</td>
+							
 								<td>
+									
 									<button type="button" class="btn btn-warning">
 	  									<i class="far fa-trash-alt"></i>
 									</button>
 								</td>
+
+								
 								<td>
 									<label for="estado">CAMBIO_ESTADO</label>
 									<select name="estado" id="estado">
