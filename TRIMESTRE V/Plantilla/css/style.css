@@ -30,8 +30,8 @@
 	--color-two: #1eb0f3;
 	--color-three: #0c0c0c;
 
-	--color-four: #EEEEEE;
-	--color-five: #c62047cb;
+	--color-four: black;
+	--color-five: #198ec4;
 	--color-six: #6E6C74;
 
 	--form-color: #03030b;
@@ -41,7 +41,7 @@ body,html{
 	font-family: 'roboto_condensed_light';
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--color-one);
+	background-color: white;
 	color: var(--color-four);
 	font-size: 16px;
 }
@@ -110,7 +110,7 @@ body,html{
 .form-control,
 .form-control:active,
 .form-control:focus{
-	color: #FFF;
+	color: black;
 }
 .form-control:focus,
 .form-control:active{
@@ -359,6 +359,7 @@ select.form-control option{
 	border-bottom: 1px solid rgba(250, 30, 78, .3);
 	text-align: right;
 	padding-right: 10px;
+	background-color: #1eb0f3;
 }
 
 .navbar-info a{
@@ -516,3 +517,12 @@ select.form-control option{
 }
 
 /*----------  Keyframes  ----------*/
+
+#titleDataClient{
+	text-align: center;
+	background-color: white;
+	color: black;
+	border-radius: 10px;
+	border: 1px solid transparent;
+	line-height: 60px;
+}	

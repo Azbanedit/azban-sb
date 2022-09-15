@@ -40,9 +40,8 @@ CREATE TABLE Productos(
 	Descripcion varchar(1000) NOT NULL,
 	Activo boolean NOT NULL default 1,
 	Sigla varchar(10) NOT NULL,
-	Genero varchar(16) NOT NULL,
     Id_genero int unsigned NOT NULL,
-    foreign key (Id_genero) references Genero (Id)
+    foreign key (Id_genero) references Genero(Id)
     );
     
 CREATE TABLE Medios_Pago(

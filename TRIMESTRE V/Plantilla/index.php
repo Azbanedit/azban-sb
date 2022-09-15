@@ -1,9 +1,9 @@
 <?php
-include("../conexion/conectar.php");
+Include("conexion/conectar.php");
 
-$cone = Conexion();
+$cone = new Conexion();
 $c = $cone->conectando();
-$Query = "select * from tipos_documentos"
+$Query = "select * from tipos_documentos";
 $ejecuta = mysqli_query($c,$Query);
 $arreglo = mysqli_fetch_array($ejecuta);
 ?>
@@ -47,18 +47,18 @@ $arreglo = mysqli_fetch_array($ejecuta);
 				<i class="fas fa-user-circle fa-5x"></i>
 			</p>
 			<p class="text-center">
-				Log in with your account
+				Ingresa con tu cuenta
 			</p>
 			<form action="">
 				<div class="form-group">
-					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; User</label>
+					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Usuario</label>
 					<input type="text" class="form-control" id="UserName">
 				</div>
 				<div class="form-group">
-					<label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Password</label>
+					<label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Contraseña</label>
 					<input type="password" class="form-control" id="UserPassword">
 				</div>
-				<a href="home.html" class="btn-login text-center">LOG IN</a>
+				<a href="home.php" class="btn-login text-center">Ingresar</a>
 			</form>
 		</div>
 	</div>

@@ -1,25 +1,25 @@
 <?php
 include('../modelo/categoriasModelo.php');
-$obj = new Clientes();
+$cliente = new Clientes();
 if($_POST){
 
-    $obj->idCategorias = $_POST['idCategorias'];
-    $obj->nombreCategorias = $_POST['nombreCategorias'];
+    $cliente->setIdTipoDocumento($_POST['idTipoDocumento']);
+    $cliente->nombreCategorias = $_POST['nombreCategorias'];
 }
 
 if(isset($_POST['guarda'])){
-    $obj->agregar();
+    $cliente->agregar();
 }
 
 if(isset($_POST['modifica'])){
-    $obj->modificar();
+    $cliente->modificar();
 }
 
 if(isset($_POST['elimina'])){
-    $obj->eliminar();
+    $cliente->eliminar();
 }
 if(isset($_POST['limpia'])){
-    $obj->limpiar();
+    $cliente->limpiar();
 }
 
 

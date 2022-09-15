@@ -12,7 +12,7 @@ $ejecuta = mysqli_query($c,$query);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>New product</title>
+	<title>Ingreso producto</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -59,13 +59,12 @@ $ejecuta = mysqli_query($c,$query);
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
+							<a href="home.php"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 						</li>
 
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
 							<ul>
-								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
 								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
@@ -76,10 +75,6 @@ $ejecuta = mysqli_query($c,$query);
 								<li><a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; Registro</a></li>
 								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
-						</li>
-
-						<li>
-							<a href="base.html"><i class="fas fa-columns fa-fw"></i> &nbsp; Base template</a>
 						</li>
 
 					</ul>
@@ -103,17 +98,6 @@ $ejecuta = mysqli_query($c,$query);
 				</h3>
 			</div>
 			
-			<div class="container-fluid">
-				<ul class="full-box list-unstyled page-nav-tabs">
-					<li>
-						<a class="active" href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; Registro</a>
-					</li>
-					<li>
-						<a href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a>
-					</li>
-				</ul>	
-			</div>
-			
 			<!-- Content -->
 			<div class="container-fluid">
 				<form action="" autocomplete="off">
@@ -121,14 +105,19 @@ $ejecuta = mysqli_query($c,$query);
                         <div id="">
                             <!--Registro datos cliente-->
                             
-                            <label for="factura"><h4>Datos de cliente</h4></label>
-                            <form id="form" >
-                                <div class="form-neon  ">
+                            
+                            <form id="form" method="POST">
+                                <div  id="titleDataClient">
+                                    <label for="factura"><h4 ><strong>Datos de cliente</strong></h4></label>
+                                    
+                                </div>
+                                <br>                                
+                                <div class="form-neon">
                                     <div id="bg-form-group">
                                             <div class="personalInformation">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <select class="form-select" id="documentType" >
+                                                    <div class="col-lg-2">
+                                                        <select class="form-select" id="documentType" name="idTipoDocumento">
                                                             <option selected>Tipo de documento</option>
                                                             <?php 
 
@@ -141,30 +130,20 @@ $ejecuta = mysqli_query($c,$query);
                                                             ?>
                                     
                                                         </select>
-                                                    </div>    
-                                                    <div  class="col-6">
+                                                    </div>     
+                                                    <div  class="col-3">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="Número de documento" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                                            <div class="input-group-append" >
-                                                                <button class="buttonColors input-group-text" id="basic-search">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="-2 -2 20 20">
-                                                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                                                                    </svg>
-                                                                </button>
-                                                            </div>
+                                                            <input type="text" class="form-control" placeholder="Numero de documento" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12 col-md-1">
-                                                        <input type="text" class="form-control" placeholder="CC">
-                                                    </div>    
-                                                    <div  class="col-12 col-md-5">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="1013678845" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                                        </div>
+                                                    <div class="col-1 input-group-append" >
+                                                        <button class="buttonColors input-group-text" id="basic-search">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="-2 -2 20 20">
+                                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                                                            </svg>
+                                                        </button>
                                                     </div>
-                                                    <div class="col-12 col-md-6">       
+                                                    <div class="col-6">       
                                                         <input type="text" class="form-control" id="name" placeholder="Nombre y apellidos">   
                                                     </div>
                                                 </div>
@@ -304,10 +283,12 @@ $ejecuta = mysqli_query($c,$query);
                                     <textarea class="form-control" placeholder="Observaciones" id="" rows="1"></textarea>
                                 </div>
                             </div>
-                           
-                            <button type="submit" id="addClient" class="buttonColors btn btn-md" >
-                                Agregar estampado
-                            </button>
+                           <div class="pull-right">
+                               <button type="submit" id="addClient" class=" buttonColors btn btn-md" >
+                                   Agregar estampado
+                               </button>
+                               
+                           </div>
                             <div class="aling-buttons">
                                 <button type="submit" id="addClient" class="buttonColors btn btn-md" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -410,9 +391,9 @@ $ejecuta = mysqli_query($c,$query);
                     </div>
 					<br><br>
 					<p class="text-center" style="margin-top: 40px;">
-						<button type="reset" class="btn-outline-danger"><i class="fas fa-paint-roller"></i> &nbsp; CLEAR</button>
+						<button type="reset" class="btn-outline-danger"><i class="fas fa-paint-roller"></i> &nbsp; Limpiar</button>
 						&nbsp; &nbsp;
-						<button type="submit" class= "btn-outline-success"><i class="far fa-save"></i> &nbsp; SAVE</button>
+						<button type="submit" class= "btn-outline-success"><i class="far fa-save"></i> &nbsp; Guardar</button>
 					</p>
 				</form>
 			</div>

@@ -50,13 +50,12 @@
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
+							<a href="home.php"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 						</li>
 
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-user-tie fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
 							<ul>
-								<li><a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
 								<li><a href="listadmin.php"><i class="fas fa-users fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
 						</li>
@@ -67,10 +66,6 @@
 								<li><a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; Registro</a></li>
 								<li><a href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; Listado</a></li>
 							</ul>
-						</li>
-
-						<li>
-							<a href="base.html"><i class="fas fa-columns fa-fw"></i> &nbsp; Base template</a>
 						</li>
 
 					</ul>
@@ -93,7 +88,7 @@
 					<i class="fab fa-dashcube fa-fw"></i> &nbsp; INICIO
 				</h3>
 				<p class="text-justify">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
+					¡Ahora el equipo de Azban podrá ingresar pedidos, visualizarlos e imprimir sus guías de envío por medio de este WorkSpace!
 				</p>
 			</div>
 			

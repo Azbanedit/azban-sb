@@ -50,16 +50,22 @@ INSERT INTO Departamentos (Nombre, Codigo)
 			('Guaviare', '95'),
 			('Vaupes', '97'),
 			('Vichada', '99');
+            
+INSERT Genero (Nombre)
+	VALUES	('Femenino'),
+			('Masculino'),
+			('Niño'),
+			('Unisex');
 
-INSERT INTO Productos (Nombre, Descripcion, Sigla, Genero) 
-	VALUES ('Buzo Cap. Con B', 'Buzo capotero con o sin bolsillo delantero. Fabricado en algodon perchado monaco', 'BCC', 'UNISEX'),
-			('Buzo C. Redondo Con B', 'Buzo cuello redondo' , 'BCRC', 'UNISEX'),
-            ('Jogger', 'Jogger en algodon perchado' , 'JOG', 'DAMA'),
-            ('Crop Top', 'Crop Top en Algodon Perchado', 'CTP', 'DAMA'),
-            ('Camiseta', 'Camiseta básica' , 'CAM', 'UNISEX'),
-            ('Buzo Capotero Sin Estampado', 'Buzo Capotero Sin Estampado', 'BSE', 'UNISEX'),
-            ('Buzo Cap. Sin B', 'Buzo Capotero Sin Bolsillo' , 'BCS', 'UNISEX'),
-            ('Buzo C. Redonco Sin B', 'Buzo Cuello Redondo Sin Bolsillo' , 'BCRS', 'UNISEX');
+INSERT INTO Productos (Nombre, Descripcion, Sigla, Id_genero) 
+	VALUES ('Buzo Cap. Con B', 'Buzo capotero con o sin bolsillo delantero. Fabricado en algodon perchado monaco', 'BCC', 1),
+			('Buzo C. Redondo Con B', 'Buzo cuello redondo' , 'BCRC', 2),
+            ('Jogger', 'Jogger en algodon perchado' , 'JOG', 2),
+            ('Crop Top', 'Crop Top en Algodon Perchado', 'CTP', 3),
+            ('Camiseta', 'Camiseta básica' , 'CAM', 1),
+            ('Buzo Capotero Sin Estampado', 'Buzo Capotero Sin Estampado', 'BSE', 2),
+            ('Buzo Cap. Sin B', 'Buzo Capotero Sin Bolsillo' , 'BCS', 4),
+            ('Buzo C. Redonco Sin B', 'Buzo Cuello Redondo Sin Bolsillo' , 'BCRS' , 4);
 
 INSERT INTO Tallas (Talla) 
 	VALUES ('L'),
@@ -239,11 +245,7 @@ INSERT Detalle_Pedido (Id_Pedido, Id_Producto, Id_Color, Id_Talla, Estampado_Pri
     
 select * from estado_pedido;
 
-INSERT Genero (Nombre)
-	VALUES	('Femenino'),
-			('Masculino'),
-			('Niño'),
-			('Unisex');
+
 #Colores
 #Departamentos
 #Producto
