@@ -188,6 +188,7 @@ if(isset($_POST['buscar'])){
 								<th>ACTUALIZAR</th>
 								<th>DELETE</th>
 								<th>CAMBIAR_ESTADO</th>
+								<th>IMPRESION DE GUIA</th>
 							</tr>
 						</thead>
 						<?php
