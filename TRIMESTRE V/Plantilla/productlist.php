@@ -123,7 +123,7 @@ if(isset($_POST['buscar'])){
 					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PRODUCTOS
 				</h3>
 				<p class="text-justify">
-					Listado impresion y estado de productos para su actualizacion.
+					Listado impresión y estado de productos para su actualizacion.
 				</p>
 			</div>
 			<div class="text-center">
