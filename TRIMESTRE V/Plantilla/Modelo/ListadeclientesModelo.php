@@ -10,13 +10,6 @@
                     private $email;
                     private $fechaCreacion;
                     
-                    public function setIdTipoDocumento($idTipoDocumento){
-                        $this->idTipoDocumento =  $idTipoDocumento;
-                    }
-
-                    public function setNumeroDocumento($numeroDocumento){
-                        $this->numeroDocumento = $numeroDocumento;
-                    }
 
                     public function __construct(int $idTipoDocumento,
                                                 string $numeroDocumento,
@@ -37,22 +30,48 @@
                      $this->fechaCreacion = $fechaCreacion;
 
                      }
+
+                     function buscar(){
+
+                           $conet = new Conexion();
+                           $c = $conet->conectando();
+                           $query = "select * from Clientes where Id_Tipo_Documento = '$this->idTipoDocumento' and Numero_Documento = '$this->numeroDocumento'";
+                           $ejecuta = mysqli_query($c, $query);
+                           if(mysqli_fetch_array($ejecuta)){
+                             return true;
+                           }else{
+                              return false;
+                           }
                      
+                     }
+
                     function agregar(){
-                                        $conet = new Conexion();
-                                        $c = $conet->conectando();
-                                        $query = "select * from Clientes where Id_Tipo_Documento = '$this->idTipoDocumento' and Numero_Documento = '$this->numeroDocumento'";
-                                        $ejecuta = mysqli_query($c, $query);
-                                        if(mysqli_fetch_array($ejecuta)){
+                                        if(buscar()){
                                            echo "<script> alert('El cliente ya existe en el Sistema')</script>";
                                         }else{
-                                           $insertar = "insert into Clientes value(
-                                                                                    '$this->idTipoDocumento',
-                                                                                    '$this->numeroDocumento'
-                                           )";
+                                           $insertar = "
+                                           INSERT INTO clientes (Nombre, 
+                                             Id_Tipo_Documento, 
+                                             Numero_Documento, 
+                                             Celular, 
+                                             Id_Tipo_Contacto, 
+                                             Dato_Tipo_Contacto, 
+                                             Email, 
+                                             Fecha_creacion)
+
+	                                          VALUES ('$this->nombre',
+                                              '$this->idTipoDocumento', 
+                                              '$this->numeroDocumento', 
+                                              '$this->celular', 
+                                              '$this->idTipoContacto', 
+                                              '$this->datoTipoContacto', 
+                                              '$this->email',
+                                              '$this->fecha_creacion')";
+                                           
+                                           
                                            echo $insertar;
                                            mysqli_query($c,$insertar);
-                                           echo "<script> alert('La Categoria fue Creada en el Sistema')</script>";
+                                           echo "<script> alert('El cliente ha sido creado')</script>";
                                             
                                         }
 

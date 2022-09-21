@@ -1,10 +1,19 @@
 <?php
 include('../modelo/categoriasModelo.php');
-$cliente = new Clientes();
-if($_POST){
+$cliente;
 
-    $cliente->setIdTipoDocumento($_POST['idTipoDocumento']);
-    $cliente->nombreCategorias = $_POST['nombreCategorias'];
+if($_POST){
+    $cliente = new Clientes($_POST['idTipoDocumento'],
+                            $_POST['numeroDocumento'],
+                            $_POST['nombre'],
+                            $_POST['celular'],
+                            $_POST['idTipoContacto'],
+                            $_POST['datoTipoContacto'],
+                            $_POST['email'],
+                            $_POST['fechaCreacion']);
+}
+else {
+    $cliente = new Cliente();
 }
 
 if(isset($_POST['guarda'])){
