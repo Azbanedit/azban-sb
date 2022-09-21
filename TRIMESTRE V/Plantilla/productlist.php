@@ -180,7 +180,6 @@ if(isset($_POST['buscar'])){
 					<table class="table table-dark table-sm">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th>#</th>
 								<th>CODIGO</th>
 								<th>NOMBRE</th>
 								<th>ESTADO</th>
@@ -203,7 +202,6 @@ if(isset($_POST['buscar'])){
 
 						<tbody>
 							<tr class="text-center" >
-								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[1]?></td>
 								<td><?php echo $arreglo2[2]?></td>
