@@ -1,24 +1,15 @@
 <?php
-Include("./Conexion/conectar.php");
+Include("conexion/conectar.php");
 
 if($_POST){
 	$Documento = $_POST['Id'];
 }
 $cone = new Conexion();
 $c = $cone->conectando();
-$query = "select * from clientes";
+$query = "select * from tipos_documentos";
 $ejecuta = mysqli_query($c,$query);
 
-if(isset($_POST['buscar'])){
-	
-    $query2="select * from clientes where Numero_Documento like '%$Documento%'";
-    $ejecuta2 = mysqli_query($c,$query2);
-    $arreglo2 = mysqli_fetch_array($ejecuta2);
-}else{
-	$query2="select * from clientes limit";
-	$ejecuta2 = mysqli_query($c,$query2);
-	$arreglo2 = mysqli_fetch_array($ejecuta2);
-}
+
 ?>
 
 <!DOCTYPE html>

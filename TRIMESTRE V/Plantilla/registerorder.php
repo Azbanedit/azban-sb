@@ -1,5 +1,5 @@
 <?php
-Include("./Conexion/conectar.php");
+Include("conexion/conectar.php");
 
 $cone = new Conexion();
 $c = $cone->conectando();

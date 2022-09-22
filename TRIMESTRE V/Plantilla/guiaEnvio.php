@@ -8,7 +8,7 @@ $c = $cone->conectando();
 	$ejecuta2 = mysqli_query($c,$query2);
 	$arreglo2 = mysqli_fetch_array($ejecuta2);
 
-    $query4="select * from direcciones where Id = '$arreglo2[2]'";
+    $query4="select * from direcciones where Id = '$key'";
 	$ejecuta4 = mysqli_query($c,$query4);
 	$arreglo4 = mysqli_fetch_array($ejecuta4);
 
