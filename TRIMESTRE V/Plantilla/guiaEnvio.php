@@ -12,6 +12,9 @@ $c = $cone->conectando();
 	$ejecuta4 = mysqli_query($c,$query4);
 	$arreglo4 = mysqli_fetch_array($ejecuta4);
 
+    $query5="select * from departamentos where ID = '$arreglo4[4]'";
+	$ejecuta5 = mysqli_query($c,$query5);
+	$arreglo5 = mysqli_fetch_array($ejecuta5);
 ?>
 
 
@@ -59,7 +62,7 @@ $c = $cone->conectando();
     </tr>
     <tr>
         <th rowspan="2">Direccion</th>
-        <td><?php echo $arreglo4[5]?></td>
+        <td><?php echo $arreglo5[1]?></td>
     </tr>
     <tr>
         <td><?php echo $arreglo4[1]?></td>

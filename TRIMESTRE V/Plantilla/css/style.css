@@ -183,7 +183,7 @@ select.form-control option{
 }
 .table-dark tr:hover{
 	color: #fff;
-	background-image: linear-gradient(to right, transparent, rgba(124, 100, 112, .1) 85%, transparent);
+	background-image: linear-gradient(to right, #1eb0f3 25%, transparent);
 }
 .page-link{
 	transition: all .2s ease-in-out;
