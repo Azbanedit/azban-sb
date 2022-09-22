@@ -8,6 +8,10 @@ $c = $cone->conectando();
 	$ejecuta2 = mysqli_query($c,$query2);
 	$arreglo2 = mysqli_fetch_array($ejecuta2);
 
+    $query4="select * from direcciones where Id = '$arreglo2[2]'";
+	$ejecuta4 = mysqli_query($c,$query4);
+	$arreglo4 = mysqli_fetch_array($ejecuta4);
+
 ?>
 
 
@@ -47,18 +51,18 @@ $c = $cone->conectando();
     </tr>
     <tr>
         <th>Celular</th>
-        <td>3234882581</td>
+        <td><?php echo $arreglo2[4] ?></td>
     </tr>
     <tr>
         <th>Ciudad</th>
-        <td>Moniquira</td>
+        <td><?php echo $arreglo4[5]?></td></td>
     </tr>
     <tr>
         <th rowspan="2">Direccion</th>
-        <td>Boyaca</td>
+        <td><?php echo $arreglo4[5]?></td>
     </tr>
     <tr>
-        <td>Calle 20 # 6 - 31 local 2 Ferreteria Rodafer Barrio La Variante</td>
+        <td><?php echo $arreglo4[1]?></td>
         
     </tr>
     <tr>
