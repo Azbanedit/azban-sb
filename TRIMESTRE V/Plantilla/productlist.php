@@ -204,7 +204,13 @@ if(isset($_POST['buscar'])){
 							<tr class="text-center" >
 								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[1]?></td>
-								<td><?php echo $arreglo2[2]?></td>
+								<td><?php 
+								$query3="select Estado from estado_pedido where Id = '$arreglo2[2]' ";
+								$ejecuta3 = mysqli_query($c,$query3);
+								$arreglo3 = mysqli_fetch_array($ejecuta3);
+								
+								
+								echo $arreglo3[0]?></td>
 								<td><?php echo $arreglo2[3]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
@@ -233,12 +239,15 @@ if(isset($_POST['buscar'])){
 									<button type="submit" value="ACTUALIZAR">Actualizar</button>
 								</td>
 								<td>
+								<a href="<?php if($arreglo2[0]<>''){
+									echo "guiaEnvio.php?key=".urlencode($arreglo2[0]);
+								} ?>">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16" type="submit">
                                 <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
                                 <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-                               
-
-							</svg>
+                            
+								</svg>
+								</a>
 								</td>
 							</tr>
 							<?php
