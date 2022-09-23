@@ -10,7 +10,7 @@ $Query = "select count(*) as totalRegistros from clientes";
 $ejecuta = mysqli_query($c,$Query);
 $arreglo = mysqli_fetch_array($ejecuta);
 $totalRegistros = $arreglo["totalRegistros"];
-echo $totalRegistros;
+//echo $totalRegistros;
 
 $maximoRegistros = 5;
 if(empty($_GET['pagina'])){
@@ -205,13 +205,16 @@ if(isset($_POST['buscar'])){
 								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[1]?></td>
 								<td><?php 
-								$query3="select Estado from estado_pedido where Id = '$arreglo2[2]' ";
+								$query3="select Estado from estado_pedido where Id = '$arreglo2[0]' ";
 								$ejecuta3 = mysqli_query($c,$query3);
 								$arreglo3 = mysqli_fetch_array($ejecuta3);
-								
-								
 								echo $arreglo3[0]?></td>
-								<td><?php echo $arreglo2[3]?></td>
+								<td>$<?php 
+								$query8="select Precio_total from pedidos where Id_Cliente = '$arreglo2[0]' ";
+								$ejecuta8 = mysqli_query($c,$query8);
+								$arreglo8 = mysqli_fetch_array($ejecuta8);
+								
+								echo $arreglo8[0]?></td>
 								<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
@@ -227,14 +230,19 @@ if(isset($_POST['buscar'])){
 								</td>
 					
 								<td>
-									<label for="estado">CAMBIO_ESTADO</label>
+									<label for="estado" value="CAMBIO_ESTADO"></label>
 									<select name="estado" id="estado">
 										<option value="VACIO"></option>
-										<option value="PRODUCCION">PRODUCCION</option>
-										<option value="INGRESADO">INGRESADO</option>
-										<option value="ENTREGADO">ENTREGADO</option>
-										<option value="TERMINADO">TERMINADO</option>
-										<option value="ESTAMPADO">ESTAMPADO</option>
+										<?php
+											$query9 = "SELECT * FROM estado_pedido";
+											$ejecuta9 = mysqli_query($c,$query9);
+											while($arreglo9 = mysqli_fetch_array($ejecuta9)){
+										?>
+												<option value="<?php echo $arreglo9[0]?>"> <?php echo $arreglo9[1]?> </option>    
+										<?php
+											}
+										?>
+
 									</select>
 									<button type="submit" value="ACTUALIZAR">Actualizar</button>
 								</td>

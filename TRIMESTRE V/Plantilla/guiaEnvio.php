@@ -15,6 +15,14 @@ $c = $cone->conectando();
     $query5="select * from departamentos where ID = '$arreglo4[4]'";
 	$ejecuta5 = mysqli_query($c,$query5);
 	$arreglo5 = mysqli_fetch_array($ejecuta5);
+
+    $query6="select * from direcciones where Id = '$key'";
+	$ejecuta6 = mysqli_query($c,$query6);
+	$arreglo6 = mysqli_fetch_array($ejecuta6);
+
+    $query7="select * from departamentos where ID = '$arreglo4[4]'";
+	$ejecuta7 = mysqli_query($c,$query7);
+	$arreglo7 = mysqli_fetch_array($ejecuta7);
 ?>
 
 
@@ -76,7 +84,7 @@ $c = $cone->conectando();
         
     </tr>
     <tr>
-        
+    <td>OBSERVACIONES</td>
     </tr>
 
 
