@@ -205,7 +205,11 @@ if(isset($_POST['buscar'])){
 								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[1]?></td>
 								<td><?php 
-								$query3="select Estado from estado_pedido where Id = '$arreglo2[0]' ";
+								$query4="select * from pedidos where Id_cliente = '$arreglo2[0]'";
+								$ejecuta4 = mysqli_query($c,$query4);
+								$arreglo4 = mysqli_fetch_array($ejecuta4);
+
+								$query3="select Estado from estado_pedido where Id = '$arreglo4[4]' ";
 								$ejecuta3 = mysqli_query($c,$query3);
 								$arreglo3 = mysqli_fetch_array($ejecuta3);
 								echo $arreglo3[0]?></td>

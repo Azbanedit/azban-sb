@@ -1,7 +1,7 @@
 <?php
 Include("conexion/conectar.php");
 $key = $_GET['key'];
-echo $key;
+//echo $key;
 $cone = new Conexion();
 $c = $cone->conectando();
     $query2="select * from clientes where Id = '$key'";
@@ -16,13 +16,13 @@ $c = $cone->conectando();
 	$ejecuta5 = mysqli_query($c,$query5);
 	$arreglo5 = mysqli_fetch_array($ejecuta5);
 
-    $query6="select * from direcciones where Id = '$key'";
+    /*$query6="select * from direcciones where Id = '$arreglo2[0]'";
 	$ejecuta6 = mysqli_query($c,$query6);
 	$arreglo6 = mysqli_fetch_array($ejecuta6);
 
-    $query7="select * from departamentos where ID = '$arreglo4[4]'";
+    $query7="select * from departamentos where ID = '$arreglo2[0]'";
 	$ejecuta7 = mysqli_query($c,$query7);
-	$arreglo7 = mysqli_fetch_array($ejecuta7);
+	$arreglo7 = mysqli_fetch_array($ejecuta7);*/
 ?>
 
 
