@@ -146,11 +146,11 @@ if(isset($_POST['buscar'])){
 				<br>
 				<label for="estado">Tipo de busqueda</label>
 				<select name="estado" id="estado">
-					<option value="VACIO"></option>
-					<option value="DOCUMENTO">DOCUMENTO</option>
-					<option value="ESTADO">ESTADO</option>
+					<!--<option value="VACIO"></option>-->
+					<!--<option value="DOCUMENTO">DOCUMENTO</option>-->
+					<!--<option value="ESTADO">ESTADO</option>-->
 					<option value="NOMBRE">NOMBRE</option>
-					<option value="CODIGO">CODIGO</option>
+					<!--<option value="CODIGO">CODIGO</option>-->
 				</select>
 				<br>
 				<br>

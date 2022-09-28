@@ -146,10 +146,10 @@ if(isset($_POST['buscar'])){
             	</table>
 				<label for="estado">Tipo de busqueda</label>
 				<select name="estado" id="estado">
-					<option value="VACIO"></option>
-					<option value="DOCUMENTO">DOCUMENTO</option>
+					<!--<option value="VACIO"></option>-->
+					<!--<option value="DOCUMENTO">DOCUMENTO</option>-->
 					<option value="NOMBRE">NOMBRE</option>
-					<option value="CODIGO">CODIGO</option>
+					<!--<option value="CODIGO">CODIGO</option>-->
 				</select>
 				<br>
 				<br>
@@ -179,11 +179,12 @@ if(isset($_POST['buscar'])){
 					<table class="table table-dark table-sm">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th>#</th>
-								<th>NAME</th>
+								<th>CODIGO</th>
+								<th>NOMBRE</th>
 								<th>N° DOCUMENTO</th>
-								<th>UPDATE</th>
-								<th>DELETE</th>
+								<th>N° CONTACTO</th>
+								<!--<th>UPDATE</th>
+								<th>DELETE</th>-->
 							</tr>
 						</thead>
 						<?php
@@ -199,7 +200,8 @@ if(isset($_POST['buscar'])){
 								<td><?php echo $arreglo2[0]?></td>
 								<td><?php echo $arreglo2[1]?></td>
 								<td><?php echo $arreglo2[3]?></td>
-								<td>
+								<td><?php echo $arreglo2[4]?></td>
+								<!--<td>
 									<button type="button" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>
 										
@@ -209,7 +211,7 @@ if(isset($_POST['buscar'])){
 									<button type="button" class="btn btn-warning">
 	  									<i class="far fa-trash-alt"></i>
 									</button>
-								</td>
+								</td>-->
 							</tr>
 							<?php
 							}while($arreglo2 = mysqli_fetch_array($ejecuta2));
