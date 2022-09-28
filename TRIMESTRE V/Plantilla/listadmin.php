@@ -164,9 +164,9 @@ if(isset($_POST['buscar'])){
 			
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
-					<li>
+					<!-- <li>
 						<a href="admin.html"><i class="fas fa-user-plus fa-fw"></i> &nbsp; NEW ADMIN</a>
-					</li>
+					</li> -->
 					<li>
 						<a class="active" href="listadmin.html"><i class="fas fa-users fa-fw"></i> &nbsp; LISTA CLIENTES</a>
 					</li>

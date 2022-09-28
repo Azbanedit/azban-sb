@@ -37,7 +37,7 @@ if(isset($_POST['buscar'])){
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista Productos</title>
+	<title>Lista Pedidos</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -120,7 +120,7 @@ if(isset($_POST['buscar'])){
 			<form action="" name="listadmin" method="POST">
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PRODUCTOS
+					<i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA DE PEDIDOS
 				</h3>
 				<p class="text-justify">
 					Listado,impresión y estado de productos para su actualizacion.
@@ -166,10 +166,10 @@ if(isset($_POST['buscar'])){
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO_PRODUCTO</a>
+						<a href="product.php"><i class="fas fa-box fa-fw"></i> &nbsp; NUEVO PEDIDO</a>
 					</li>
 					<li>
-						<a class="active" href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA_PRODUCTOS</a>
+						<a class="active" href="productlist.php"><i class="fas fa-boxes fa-fw"></i> &nbsp; LISTA PEDIDOS</a>
 					</li>
 				</ul>	
 			</div>
