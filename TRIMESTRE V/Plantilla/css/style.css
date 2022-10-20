@@ -54,11 +54,22 @@ body,html{
 }
 
 .form-neon{
-	border: 1px solid rgba(250, 30, 78, .3);
 	padding: 15px;
 	border-radius: 3px;
+	background-color: #e9f3f8;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
+.form-pedido{
+	margin-left: 0% !important;
+	margin-right: 0% !important;
+}
+
+.form-producto{
+	background-color: #60BBE6;
+	color: #FFF;
+}
 /*----------  Page headers styles  ----------*/
 .page-header{
 	padding: 30px 20px 60px 20px;
@@ -532,4 +543,40 @@ select{
 	width: 100%;
 	height: 80%;
 	margin-top: 2%;
+	cursor: pointer;
+}
+.buttonColors{
+	background-color: rgb(235, 235, 235);
+	color: black;
+	border-radius: 5px;
+}
+.buttonColors:hover{
+	background-color: #4CAF50; /* Green */
+	color: white;
+}
+.aling-buttons{
+	text-align: right;
+
+}
+
+#eliminarPedido{
+	text-align: right;
+	
+}
+#botonEliminar{
+	border-radius: 5px;
+	border: 0;
+}
+
+.botonCargar{
+	margin-top: 20px;
+}
+
+.btn-subirImagenes{
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.cargarIcon{
+	padding: 5px;
 }

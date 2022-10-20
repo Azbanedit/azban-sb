@@ -113,7 +113,7 @@ $ejecuta = mysqli_query($c,$query);
                             
                             <form id="form" method="POST" action="ListadeclientesControlador.php">       
                                 <div class="form-neon">
-                                    <label for="factura"><h4>Registro de producto</h4></label>
+                                    <label for="factura"><h4>Datos de cliente</h4></label>
                                     <div id="bg-form-group">
                                             <div class="personalInformation">
                                                 <div class="row">
@@ -155,13 +155,13 @@ $ejecuta = mysqli_query($c,$query);
                                                         <input type="text" class="form-control"  id="phone"  placeholder="Celular">
                                                     </div>  
                                                     <div class="col-12 col-md-6">
-                                                        <input type="email" class="form-control" id="email" placeholder="@gmail.com">   
+                                                        <input type="email" class="form-control" id="email" placeholder="@gmail.com" >   
                                                     </div>
                                                 </div>
                     
                                                 <div class="row">
                                                     <div class="col-12 col-md-3">
-                                                        <select  class="form-select" id="contactType" >
+                                                        <select  class="form-select" id="contactType">
                                                             <option selected>Tipo de contacto</option>
                                                             
                                                             <?php
@@ -177,14 +177,13 @@ $ejecuta = mysqli_query($c,$query);
                                                         </select>     
                                                     </div>
                                                     <div class="col-12 col-md-3">                    
-                                                        <input type="text" class="form-control" id="contact" placeholder="Contacto">
+                                                        <input type="text" class="form-control" id="contact" placeholder="Contacto" >
                                                     </div>
                                                     <div class="col-12 col-md-6">
 
                                                     </div>
                                                 </div>
                                             </div>
-                    
                                         <div class="aling-buttons">
                                             <button type="submit" id="addClient" class="buttonColors btn btn-md listo" >
                                                 LISTO
@@ -195,15 +194,17 @@ $ejecuta = mysqli_query($c,$query);
                                 <br>
                             </form>
                         </div>
-                        <form action="" class="form-neon ">
+                        <form action="" class="form-neon form-producto">
                             <!--Registro de pedido-->
                             <label for="factura"><h4>Registro de producto</h4></label>
-                            <div class="form-neon">
+                            <div class="form-neon form-pedido">
 
                                 <div id="eliminarPedido">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                    </svg>
+                                    <button id="botonEliminar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                        </svg>
+                                    </button>
                                 </div>
                                 <div class="row">
                                     <div class="col-2">
@@ -263,14 +264,24 @@ $ejecuta = mysqli_query($c,$query);
                                         <textarea class="form-control" placeholder="Estampado" id="" rows="1"></textarea>
                                     </div>
                                     <div class="col-12 col-md-4 form-group">
-                                        <input type="text" class="form-control" id="contact" placeholder="Contacto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                                        </svg>
+                                        <!--<input type="text" class="form-control" id="contact" placeholder="Contacto">
+                                        <button class="buttonColors input-group-text">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                            </svg>
+                                        </button>-->
+                                        <div class="botonCargar input-group mb-3">
+                                            <button class="btn btn-subirImagenes  buttonColors input-group-text" type="button" id="button-addon2">Cargar imagen              
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="cargarIcon bi bi-upload" viewBox="0 0 16 16">
+                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-md-4 form-group">
-                                        <textarea class="form-control" placeholder="Estampado" id="" rows="1"></textarea>
+                                        <textarea class="form-control" placeholder="Observaciones" id="" rows="1"></textarea>
                                     </div>
                                 </div>
                                <div class="pull-right">
@@ -280,6 +291,7 @@ $ejecuta = mysqli_query($c,$query);
                                    
                                </div>
                             </div>
+                            <br>
                             <div class="aling-buttons">
                                 <button type="submit" id="addClient" class="buttonColors btn btn-md" >
                                     AGREGAR PRODUCTO
@@ -321,6 +333,7 @@ $ejecuta = mysqli_query($c,$query);
                                     <input type="text" class="form-control" id="city" placeholder="Municipio">   
                                 </div>
                             </div>
+                            <br>
                             <div class="aling-buttons">
                                 <button type="submit" id="addClient" class="buttonColors btn btn-md" >
                                     LISTO
@@ -365,7 +378,7 @@ $ejecuta = mysqli_query($c,$query);
                                     <input type="text" class="form-control"  id="place2"  placeholder="Total a pagar">
                                 </div>
                             </div>
-                
+                            <br>
                             <div class="aling-buttons">
                                 <button type="submit" id="addClient" class="buttonColors btn btn-md" >
                                     LISTO
@@ -373,11 +386,8 @@ $ejecuta = mysqli_query($c,$query);
                             </div>
                         </form>
                     </div>
-					<br><br>
 					<p class="text-center" style="margin-top: 40px;">
-						<button type="reset" class="btn-outline-danger"><i class="fas fa-paint-roller"></i> &nbsp; Limpiar</button>
-						&nbsp; &nbsp;
-						<button type="submit" class= "btn-outline-success"><i class="far fa-save"></i> &nbsp; Guardar</button>
+						<button type="submit" class= "buttonColors">CREAR PEDIDO</button>
 					</p>
 				</form>
 			</div>
