@@ -12,21 +12,36 @@ $ejecuta = mysqli_query($c,$query);
 
 
 
-$query1 = "select Id from tipos_documentos where Id = '$arreglo2[2]'";
-$ejecuta1 = mysqli_query($c,$query1);
-$arreglo1 = mysqli_fetch_array($ejecuta1);
-
 if(isset($_POST['Busca'])){
     /* $cone = new Conexion();
     $c = $cone->conectando(); */
     $query2 = "select * from clientes where Numero_Documento = '$Numero_Documento'";
-    echo $query2;
+   // echo $query2;
     $ejecuta2 = mysqli_query($c,$query2);
     $arreglo2 = mysqli_fetch_array($ejecuta2);
-    echo $arreglo2;
+    //echo $arreglo2;
+    $query1 = "select * from tipos_documentos where Id = '$arreglo2[2]'";
+    $ejecuta1 = mysqli_query($c,$query1);
+    $arreglo1 = mysqli_fetch_array($ejecuta1);
+
+    $query3="select * from pedidos where Id_cliente = '$arreglo2[0]'";
+    $ejecuta3 = mysqli_query($c,$query3);
+    $arreglo3 = mysqli_fetch_array($ejecuta3);
+
+    $query4="select * from direcciones where Id_cliente = '$arreglo2[0]'";
+    $ejecuta4 = mysqli_query($c,$query4);
+    $arreglo4 = mysqli_fetch_array($ejecuta4);
+
+    $query5="select * from departamentos where ID = '$arreglo4[4]'";
+	$ejecuta5 = mysqli_query($c,$query5);
+	$arreglo5 = mysqli_fetch_array($ejecuta5);
 }
 else{
     $arreglo2 = ['','','','','','','','',''];
+    $arreglo1 = ['','','','','','','','',''];
+    $arreglo3 = ['','','','','','','','',''];
+    $arreglo4 = ['','','','','','','','',''];
+    $arreglo5 = ['','','','','','','','',''];
 }
 
 
@@ -153,7 +168,7 @@ else{
                                                         <span class="">
                                                             <select class="form-select " id="documentType" name="idTipoDocumento">
                                                                 <option selected>Tipo de documento</option>
-                                                                <?php 
+                                                                <!--<?php 
     
                                                                 while($tipoDoc = mysqli_fetch_array($ejecuta)){
     
@@ -161,7 +176,7 @@ else{
                                                                 <option value="<?php $tipoDoc[0] ?>"><?php echo $tipoDoc[1]?></option>
                                                                 <?php
                                                                 }
-                                                                ?>
+                                                                ?>-->
                                         
                                                             </select>
                                                         </span>
@@ -347,30 +362,30 @@ else{
                             <label for="factura"><h4>Datos de envío</h4></label>
                             <div class="row">
                                 <div class="col-2 col-md-1 ">
-                                    <input type="text" class="form-control" placeholder="CC">
+                                    <input type="text" class="form-control" placeholder="T.D." value="<?php echo $arreglo1[2]?>" >
                                 </div>    
                                 <div  class="col-10 col-md-3 ">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="1013678845" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control" placeholder="1013678845" aria-label="Recipient's username" aria-describedby="basic-addon2" value= "<?php echo $arreglo2[3]?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 ">       
-                                    <input type="text" class="form-control" id="name" placeholder="Nombre y apellidos">   
+                                    <input type="text" class="form-control" id="name" placeholder="Nombre y apellidos"value= "<?php echo $arreglo2[1]?>">   
                                 </div>
                                 <div class="col-12 col-md-4 ">
-                                    <input type="text" class="form-control"  id="number"  placeholder="# de factura">
+                                    <input type="text" class="form-control"  id="number"  placeholder="# de factura" value= "FAC<?php echo $arreglo3[0]?>">
                                 </div> 
                             </div>
                 
                             <div class="row">
                                 <div class="col-12 col-md-4">
-                                    <input type="text" class="form-control"  id="phone"  placeholder="Dirección">
+                                    <input type="text" class="form-control"  id="phone"  placeholder="Dirección" value= "<?php echo $arreglo4[1]?>">
                                 </div>  
                                 <div class="col-12 col-md-4 ">
-                                    <input type="text" class="form-control" id="department" placeholder="Departamento">   
+                                    <input type="text" class="form-control" id="department" placeholder="Departamento"value= "<?php echo $arreglo5[1]?>">   
                                 </div>
                                 <div class="col-12 col-md-4 ">
-                                    <input type="text" class="form-control" id="city" placeholder="Municipio">   
+                                    <input type="text" class="form-control" id="city" placeholder="Municipio"value= "<?php echo $arreglo4[5]?>">   
                                 </div>
                             </div>
                             <br>
