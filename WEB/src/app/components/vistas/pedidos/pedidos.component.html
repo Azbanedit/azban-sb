@@ -1,0 +1,192 @@
+<div *ngIf="viewOrderDetails" id="background-alert">
+  <app-order-viwer
+    [Order]="orderSelected"
+    [ImagesList]="imagesList"
+    [MainImage]="mainImage"
+    (CloseEvent)="onCloseOrderViwer()"
+  ></app-order-viwer>
+</div>
+
+<!--Adición mensaje de advertencia-->
+<div *ngIf="showConfirmation" id="background-alert">
+  <div id="container-alert" *ngFor="let order of orderData; index as i">
+    <app-confirmation-message
+    [ConfirmationPay]="messageConfirmation"
+    (confirmChangeEvent)="saveChangePay()"
+    (confirmNotChangeEvent)="notSaveChangePay()"
+    >
+    </app-confirmation-message>
+  </div>
+</div>
+<!---->
+<!--Previsualización de impresión-->
+<div *ngIf="showPreview" id="background-print">
+  <div id="container-print">
+    <app-to-print
+    (ClosePreviewPrintEvent)="closePreview()"
+    [PrintData]="orderToPrint"
+    > 
+    </app-to-print>
+  </div>
+</div>
+<!---->
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <app-header></app-header>
+</div>
+<div class="row">
+  <div class="col-lg-1 col-md-1 col-sm-hidden">
+  </div>
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="row">
+      <div class="menu-tools col-lg-1 col-md-1" [ngClass]="collapseMenuClass">
+        <app-menu-tools
+        (addCollapseMenuEvent)="collapseMenuPanel()"
+        >
+        </app-menu-tools>
+      </div>
+      <div [ngClass]="collapseTableClass" >  
+        <div class="row">
+          <div class="col-lg-8 " id="orderTitle">
+            <header>
+              <strong> DATOS DE PEDIDO</strong>
+            </header>
+          </div>
+          <div class="col-lg-4" id="borderIcons">
+                <button [ngClass]="classOrderList" id="orderList" type="button" (click)="changeList(1)" class="button-icon-white borderButton btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                  </svg>
+                </button>
+                <button [ngClass]="classShipment" id="shipmentList" type="button" (click)="changeList(2)" class="button-icon-white borderButton btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                    <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    <path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z"/>
+                  </svg>
+                </button>
+                <button id="eyeButton" (click)="viewAllDetails()" type="button" class="button-icon-white borderButton btn" >
+                  <svg *ngIf="!openViewAll" id="viewAll" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                  </svg>
+                  <svg *ngIf="openViewAll" id="closeAll" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                    <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                    <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                    <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                  </svg>
+                </button>
+          </div>
+        </div>  
+        <div *ngIf="showShipmentData">
+          <app-order-shipment-data
+          [ShipmentData]="orderData"
+          (OpenPreviewEvent)="openPreview()"
+          (OrderToPrintEvent)="orderPreview($event)"
+          >
+          </app-order-shipment-data> 
+        </div>
+        <div class="row margin-b-10">
+          <div class="col-lg-4">
+            <div class="searchbar">
+              <input class="search_input" type="text" [(ngModel)]="filterByWords" name="filterByWords" placeholder="Search...">
+            </div>
+            <!--<input id="input-search" type="text" placeholder="Buscar" name="filterByWords" [(ngModel)]="filterByWords">-->
+          </div>
+          <div id="buttonColorsFilter" class="col-lg-4">
+            <button type="button" (click)="setStateId(3)" class="btnForm back-green btn"></button>
+            <button type="button" (click)="setStateId(2)" class="btnForm back-blue  btn"></button>
+            <button type="button" (click)="setStateId(1)" class="btnForm back-dark  btn"></button>
+            <button type="button" (click)="setStateId(0)" class="btnForm back-white  btn"></button>
+          </div>
+          <div class="col-lg-4">
+          </div>
+        </div>
+        <div *ngIf="showOrderData && !viewOrderDetails" class="col-lg-11 col-md-11"  class="card" id="card-complete">
+          <div  class="panel-group" >
+            <div *ngFor="let order of orderData | pipeFilterOrders:filterByWords ; index as i " [style.display]="filterByState(order.stateId) ? '' : 'none'"  class="panel panel-default" id="borderState" [ngClass]="order.stateId==3 ? 'lborder-green' :  (order.stateId==2 ? 'lborder-blue' : 'back-dark')" >
+              <div> 
+                <table class="dataState" id="borderOrder" *ngIf="filterByState(order.stateId)" >
+                  <thead>
+                    <tr >
+                      <th class="col-lg-1 col-md-1 padding-0" [ngClass]="getColorState(order.stateId)"><small>{{order.id}}</small></th>
+                      <th class="col-lg-2 col-md-2 padding-0" >
+                        <select #estado  name="Estado" (change)="changeState(estado.selectedIndex, order.id)"  id="stateProduction">
+                          <option *ngFor="let state of statesList; index as i" value="{{state.stateId}}" [selected]="state.stateId == order.stateId">{{state.state}}</option>
+                        </select>
+                      </th>
+                      <th class="col-lg-5 col-md-5 padding-0 client-info"><small>{{order.client}} ( {{order.contact}} )</small></th>
+                      <th class="col-lg-2 col-md-2 padding-0"><small>$ {{order.deposit}} - </small>
+                        <button *ngIf="!order.payed" (click)="payIcon(order.id)" class="color-green-v2 btn btn-primary btn-circle">
+                          <svg id="paidIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                          </svg>
+                        </button>
+                        <svg *ngIf="order.payed" id="paidIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                        </svg>
+                      </th>
+                      <th class="col-lg-1 col-md-1 padding-0" >
+                        <button type="button" *ngIf="order.numImages > 0" [ngClass]="classBgColor[i]" class="btn btn-primary" (click)="viewOrder(order)">Ver</button>
+                      </th>
+                      <th class="col-lg-2 col-md-2 padding-0" ><small><label [ngClass]="classBgColor[i]" class="spaceColorState">{{order.deliveryDate.substring(0,10)}}</label></small></th>
+                      
+                      <th id="lookOrderPadding">
+                        <button id="lookOrder" (click)="lookOrder(i)">
+                          <svg *ngIf="!openView[i] && !openViewAll" id="eyeOpened" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                          </svg>
+                          <svg *ngIf="openView[i] || openViewAll" id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                            <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                            <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                            <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                          </svg>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>  
+              <table class="table" *ngIf="openView[i] || openViewAll">
+                <tbody>
+                  <tr *ngFor="let data of order.products">
+                      <td style="width:20%"><small class="col-md-1"><span class="textStrong"> &#8226; {{data.product}} / {{data.gender}} / {{data.size}} / {{data.color}}</span></small></td>
+                      <td style="width:10%; border-left:1px solid #fff" id="aling-checks">
+                        <!--<div class="icon-container">
+                          <img id="svg-shirt" src="../../../../assets/img/ryanlerch_white_t-shirt.svg" alt=""> x{{data.quantity}}
+                        </div>
+                        <div class="form-check form-switch" id="check-clothes">
+                          <input class="form-check-input" type="checkbox" [checked]="data.readyProductBase" id="switchClothes" (click)="checkClothes(data.id, !data.readyProductBase, order.id)">
+                         </div>-->
+                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                          <label id="control-producto-op1-{{data.id}}" class="btn btn-secondary active {{(data.toDo == false ? 'back-green' : '')}}" (click)="checkClothes(data.id, false, order.id)">
+                            Hay
+                          </label>
+                          <label id="control-producto-op2-{{data.id}}" class="btn btn-secondary {{(data.toDo == true ? 'back-red' : '')}}" (click)="checkClothes(data.id, true, order.id)">
+                            NoHay
+                          </label>
+                        </div>
+                      </td>
+                      <td [style.width]="'15%'" class="border-l-1"><small class="col-md-1"><span class="textStrong">&#8226; Est: </span>{{data.mainPrint}}</small></td>
+                      <td [style.width]="'15%'" class="border-l-1"><small class="col-md-1"><span class="textStrong">&#8226; Est-2: </span>{{data.secundaryPrint}}</small></td>
+                      <td [style.width]="'40%'" class="border-l-1"><small class="col-md-1"><span class="textStrong">&#8226; Obs: </span>{{data.anotation}}</small></td>
+                      
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-hidden">
+  </div>
+</div>
+
+
+
+
+
+
+
+

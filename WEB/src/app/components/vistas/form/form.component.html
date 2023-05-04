@@ -1,0 +1,333 @@
+<!--Adición de formulario direcciones-->
+<div  *ngIf="showAddressForm" id="background-pop-up">
+    <div id="container-pop-up">
+        <app-address-form
+        (addAddressEvent)="onAddAddress($event)"
+        (closeAddressEvent)="offAddAddress()"
+        [DepartmentList]="departmentList"
+        ></app-address-form>
+    </div>
+</div>
+<div *ngIf="showAddressList" id="background-pop-up-address-list">
+    <div id="container-pop-up-address-list">
+        <app-address-list
+        [AddressData]="addressList"
+        (AddressSelectedEvent)="addAddressSelected($event)"
+        (AddressChangedEvent)="addressChanged()"
+        (AddressListSaveEvent)="saveAddressList()"
+        (CloseAddressListEvent)="closeAddressList()"
+        >
+        </app-address-list>
+    </div>
+</div>
+<!---->
+<!--Adición mensaje confirmación-->
+<div *ngIf="showConfirmation" id="background-pop-up-confirmation">
+    <div id="container-pop-up-confirmation">
+        <app-modal-message
+        [Message]="confirmationMessage">
+        </app-modal-message>
+    </div>
+</div>
+<!---->
+<!--Loader-->
+<div *ngIf="showLoader" id="background-pop-up-loader">
+    <div id="container-pop-up-loader">
+        <app-loader
+        ></app-loader>
+    </div>
+</div>
+<!---->
+<div *ngIf="showErrorConfirmation" id="background-pop-up-confirmation">
+    <div id="container-pop-up-confirmation">
+        <app-modal-message
+        [Message]="'Ups! Ocurrió un error, verifica tu conexión e intenta nuevamente'">
+        </app-modal-message>
+    </div>
+</div>
+<div>
+    <form [formGroup]="registerForm" id="form-order" class="form-floating">
+        <div class="bg-header">
+            <h2 id="lineborder1"  class="heading">
+                <a routerLink="vista-pedidos" type="button" class="btn" id="return">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                        <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+                    </svg>
+                </a>
+                <strong id="initialText">Registro de Pedido </strong> 
+            </h2>
+            <hr id="color-line" style="height: 2px; margin: 15px;">
+        </div>
+        <!--<div>
+            <label for="label-image" id="text-image">Añadir imagen</label>
+            <input class="image" (change)="captureFile($event)" type="file" name="name[]" id="label-image">
+        </div>-->
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-hidden">
+            </div>
+            <div id="bg-form-group" class="col-lg-10 col-md-10 col-sm-12">
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 col-sm-12">
+                                <select   class="form-select" formControlName="documentType" id="documentType" >
+                                    <option value="nv" disabled>TD</option>
+                                    <option  *ngFor="let document of documentList; index as i" value="{{document.id}}">{{document.abbreviation}}</option>
+                                </select>
+                            </div>    
+                            <div  class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" formControlName="document" placeholder="Número de documento" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append" >
+                                        <button [disabled]="registerForm.controls.document.invalid || registerForm.controls.documentType.invalid" class="buttonColors input-group-text" id="basic-search"  (click)="buttonSearch()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="-2 -2 20 20">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="showform1" class="col-lg-3 col-md-3 col-sm-12">    
+                                <fieldset [disabled]="disableClientsField">            
+                                <input type="text" class="form-control" formControlName="name"  id="name" placeholder="Nombre y apellidos">
+                                </fieldset>    
+                            </div>
+                            <div *ngIf="showform1" class="col-lg-3 col-md-3 col-sm-12">
+                                <fieldset [disabled]="disableClientsField">
+                                    <select  class="form-select" formControlName="department" id="department" >
+                                        <option value="nv" disabled>Departamento</option>
+                                        <option *ngFor="let department of departmentList index as i" value="{{department.id}}">{{department.name}}</option>
+                                    </select>
+                                </fieldset>     
+                            </div>
+                            <div *ngIf="showform1" class="col-lg-3 col-md-3 col-sm-12">
+                                <fieldset [disabled]="disableClientsField">
+                                    <input type="text" class="form-control" formControlName="city" id="place2"  placeholder="Municipio">
+                                </fieldset>
+                            </div>
+                            
+                        </div>
+                        <fieldset [disabled]="disableClientsField" id="fieldset">
+                            <div *ngIf="showform1" class="row">
+                                <div *ngIf="showform1" class="col-lg-3 col-md-3 col-sm-12">
+                                    <fieldset [disabled]="disableClientsField">
+                                    <input type="text" class="form-control" formControlName="phone" id="phone"  placeholder="Celular">
+                                    </fieldset>
+                                </div>  
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <input type="email" class="form-control" formControlName="email" id="email" placeholder="@gmail.com">   
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <input type="text" class="form-control" formControlName="address" id="direccion"  placeholder="Dirección">
+                                </div>
+                            </div>
+
+                            <div *ngIf="showform1" class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <select  class="form-select" formControlName="contactType" id="contactType" >
+                                        <option value="nv" disabled>Tipo de contacto</option>
+                                        <option *ngFor="let type of contactTypeList; index as i" value="{{type.id}}">{{type.name}}</option>
+                                    </select>     
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">                    
+                                    <input type="text" class="form-control" formControlName="contactName"  id="contact" placeholder="Contacto">
+                                </div>
+                                <div id="checkAddresser" class="col-lg-2 col-md-2 col-sm-12">
+                                    <input formControlName="replyUserData" (change)="replyClient()" class="form-check-input" type="checkbox" id="replyUserData" value="">
+                                    <label  for="exampleFormControlTextarea1">Usar cliente</label>
+                                </div>
+                                <div *ngIf="showform1" class="col-lg-2 col-md-2 col-sm-12">
+                                    <fieldset [disabled]="disableClientsField">
+                                    <input type="text" class="form-control" formControlName="addresse" id="addresse"  placeholder="Destinatario">
+                                    </fieldset>
+                                </div>  
+                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <input type="text" class="form-control" formControlName="phoneAddresse" id="phoneAddresse" placeholder="Celular">   
+                                </div>
+                            </div>
+                            <div *ngIf="showform1" class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <select  class="required form-select" formControlName="paymentMethod"id="TipoPago" >
+                                        <option value="nv" disabled><label>Medio de pago</label></option>
+                                        <option *ngFor="let pay of paymentMethodList" value="{{pay.id}}">{{pay.name}}</option>
+                                    </select> 
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div id="margin-top" class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <input  type="radio" class="btn-check" name="paid"  id="pago"  >
+                                            <button [ngClass]="classPago" type="button" class="width-100 btn" [disabled]="buttonPayDisabled" for="option1"(click)="selectButtom(1)">Pago</button>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12"> 
+                                            <input type="radio" class="btn-check" name="initialPay"  id="abono"  >
+                                            <button [ngClass]="classAbono" type="button" class="width-100 btn" [disabled]="buttonPayDisabled" for="option1" (click)="selectButtom(2)">Abono</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-12">
+                                    <input type="text" class="form-control" formControlName="total" id="place2"  placeholder="Total">
+                                </div>
+                                
+                                <div class="col-lg-2 col-md-3 col-sm-12">
+                                    <input type="text" class="form-control" formControlName="discount" id="place2"  placeholder="Descuento">
+                                </div>
+                                
+                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                    <input type="text" class="required form-control" formControlName="deposit" id="pago"  placeholder="Abonado">
+                                </div>
+                            </div> 
+                        </fieldset>
+                    </div>
+                <div *ngIf="showform1" class="aling-top">
+                    <button type="submit" id="addClient" class="buttonColors btn btn-md " (click)="selectClient()" [disabled]="!registerForm.valid || isClientSelected || selectedPay == 0 " >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </button>
+                    <button type="button" id="addAddress" class="buttonColors btn btn-md" (click)="addAddressFromIcon()"[disabled]=" isClientSelected || disabledClientAddAddress">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </button>
+                    <button type="button" id="editClient" class="buttonColors btn btn-md" (click)="editClient()" [disabled]="disableEdit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-hidden">
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-hidden">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12">
+            <app-uploadfile
+            (LoadImagesEvent)="onLoadImagesEvent($event)"
+            ></app-uploadfile>
+
+            <div *ngFor="let img of imagesList" class="toast show fade text-white bg-info inline-control-toast" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-color="info" data-mdb-autohide="false">
+                <div class="toast-header text-white bg-info">
+                  <i class="fas fa-info-circle fa-lg me-2"></i>
+                  <strong class="me-auto">{{img.name.substring(0,20)}}</strong>
+                  <small>loaded</small>
+                  <button (click)="deleteSelectImage(img)" type="button" class="btn-close btn-close-white" data-mdb-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-hidden">
+        </div>
+    </div>
+
+    <!--Formulario Agregar Productos-->
+    <form [formGroup]="productForm" *ngIf="showForm2" id="form-recive">
+        <div class="row">
+
+            <div class="col-lg-1 col-md-1 col-sm-hidden">
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-12">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
+                            <select (change)="onProductSelect()" class="form-select" formControlName="product" id="product" >
+                                <option value="nv" disabled>Prenda</option>
+                                <option *ngFor="let product of productList; index as i" value="{{product.id}}">{{product.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-12">
+                            <select  class="form-select" formControlName="gender" id="gender" >
+                                <option value="nv" disabled>Género</option>
+                                <option *ngFor="let gender of genderList; index as i" value="{{gender.id}}">{{gender.gender}}</option>
+                            </select>
+                        </div>
+                        <div class="padding-0 col-lg-1 col-md-1 col-sm-12">
+                            <select  class="form-select" formControlName="size" id="size" >
+                                <option value="nv" disabled>Talla</option>
+                                <option *ngFor="let size of sizeList; index as i" value="{{size.id}}">{{size.size}}</option>
+                            </select>
+                        </div>
+                        <div class="not-margin-top col-lg-1 col-md-1 col-sm-12">
+                            <div class="dropdown">
+                                <button [style.background-color]="colorBgButton"  class="buttonColorList btn width-100 dropdown-toggle"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Color
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li *ngFor="let colorItem of colorList; index as i" class="user-select-auto">
+                                        <div (click)="selectColor(colorItem.id, colorItem.index)" class="row margin-top-0 height-35">
+                                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <span [style.background-color]="colorItem.index" type="select" class="dot" id="rojo"></span>
+                                            </div>
+                                            <div id="rojoLetra"class="col-lg-8 col-md-8 col-sm-12">
+                                                <p>{{colorItem.color}}</p>
+                                            </div>
+                                        </div>  
+                                    </li>
+                                </ul>
+                                
+                            </div>    
+                        </div>
+                        <div class="padding-1 col-lg-1 col-md-1 col-sm-12">
+                            <input type="text" class="required form-control" formControlName="quantity" id="quantity" placeholder="Cantidad">
+                        </div>
+                        <div id="observations" class="obs-text col-lg-6 col-md-6 col-sm-12">
+                            <label for="exampleFormControlTextarea1" >Observaciones</label>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12">                   
+                            <label  for="exampleFormControlTextarea1">Estampado</label>
+                            <textarea class="form-control" formControlName="stamp" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <label  for="exampleFormControlTextarea1">Estampado secundario</label>
+                            <textarea class="form-control"  formControlName="secondaryStamp" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <textarea class="form-control"  formControlName="observations" rows="4"></textarea> 
+                        </div>
+                    </div>
+                </div>
+                <div class="finalizar">
+                    <button type="button" class="buttonColors btn btn-md" (click)="addCard()" [disabled]="!productForm.valid || colorSelectedId == 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                        </svg>
+                
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-hidden">
+            </div>
+        </div> 
+    </form>
+    <!--Adición card con informacion de producto-->
+    <div>
+        <app-product-info 
+        [ProductsData]= "datosCard"
+        (deleteDataCardEvent)="deleteCard($event)" 
+        >
+        </app-product-info>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-hidden">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12 buttonCreateOrder" *ngIf="showButtonCreate">
+            <button type="button" class="buttonColorMain btn btn-md" [disabled]="buttonCreateOrderDisable" (click)="createOrder()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                </svg>
+                Crear Pedido</button>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-hidden">
+        </div>
+    </div>
+</div>
+
+
+

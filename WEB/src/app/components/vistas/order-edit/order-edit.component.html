@@ -1,0 +1,189 @@
+<p>order-edit works!</p>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="input-group mb-3">
+                    <input [(ngModel)]="orderId" type="number" class="form-control" placeholder="Número de Orden" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button (click)="searchOrderById()" class="btn btn-outline-secondary" type="button">Buscar</button>
+                    </div>
+                  </div>
+            </div>
+    
+            <div *ngIf="showOrder" class="col-12">
+                <div class="row">
+                    <div class="border p-4 col-4">
+                        <h6 class="text-light">Datos Pedido</h6>
+                        <ul class="text-light">
+                            <li>Cliente: {{order.client}}</li>
+                            <li>Email: {{order.email}}</li>
+                            <li>Teléfono: {{order.phone}}</li>
+                            <li>Abono: {{order.deposit}}</li>
+                            <li [ngClass]="order.payed ? 'text-success' : 'text-danger'" >{{order.payed ? 'PAGADO' : 'ABONADO'}}</li>
+                        </ul>
+                    </div>
+                    <div class="border p-4 col-4">
+                        <h6 class="text-light">Dirección <span (click)="activeEditAddress()" class="badge badge-secondary btn-danger">Editar</span></h6>
+                        <ul class="text-light">
+                            <li>{{order.department}}</li>
+                            <li>{{order.city}}</li>
+                            <li>Dirección: {{order.address}}</li>
+                            <li>Destinatario: </li>
+                            <li>Teléfono: </li>
+                        </ul>
+                    </div>
+                    <div class="border p-4 col-4">
+                        <h6 class="text-light">Productos <span (click)="activeAddProduct()" class="badge badge-secondary btn-danger">Editar</span></h6>
+                        <ul class="text-light">
+                            <li *ngFor="let product of order.products">{{product.initials}} / {{product.color}} / {{product.size}} / {{product.gender}}
+                                <br>
+                                <span>{{product.mainPrint}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="addProduct" class="panel panel-primary">
+            <div style="margin-bottom: 5px;" class="panel-heading">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                      <h6 class="list-group-item-heading">Agregar Producto a la Orden {{orderId}}</h6>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-12">
+                    <form [formGroup]="productForm" *ngIf="showForm2" id="form-recive">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-12">
+                                            <select (change)="onProductSelect()" class="form-select" formControlName="product" id="product" >
+                                                <option value="nv" disabled>Prenda</option>
+                                                <option *ngFor="let product of productList; index as i" value="{{product.id}}">{{product.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12">
+                                            <select  class="form-select" formControlName="gender" id="gender" >
+                                                <option value="nv" disabled>Género</option>
+                                                <option *ngFor="let gender of genderList; index as i" value="{{gender.id}}">{{gender.gender}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="padding-0 col-lg-2 col-md-2 col-sm-12">
+                                            <select  class="form-select" formControlName="size" id="size" >
+                                                <option value="nv" disabled>Talla</option>
+                                                <option *ngFor="let size of sizeList; index as i" value="{{size.id}}">{{size.size}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="not-margin-top col-lg-2 col-md-2 col-sm-12">
+                                            <div class="dropdown">
+                                                <button [style.background-color]="colorBgButton"  class="buttonColorList btn width-100 dropdown-toggle"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Color
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li *ngFor="let colorItem of colorList; index as i" class="user-select-auto">
+                                                        <div (click)="selectColor(colorItem.id, colorItem.index)" class="row margin-top-0 height-35">
+                                                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                                                <span [style.background-color]="colorItem.index" type="select" class="dot" id="rojo"></span>
+                                                            </div>
+                                                            <div id="rojoLetra"class="col-lg-8 col-md-8 col-sm-12">
+                                                                <p>{{colorItem.color}}</p>
+                                                            </div>
+                                                        </div>  
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>    
+                                        </div>
+                                        <div class="padding-1 col-lg-2 col-md-2 col-sm-12">
+                                            <input type="text" class="required form-control" formControlName="quantity" id="quantity" placeholder="Cantidad">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-12">                   
+                                            <label  for="exampleFormControlTextarea1">Estampado</label>
+                                            <textarea class="form-control" formControlName="stamp" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12">
+                                            <label  for="exampleFormControlTextarea1">Estampado secundario</label>
+                                            <textarea class="form-control"  formControlName="secondaryStamp" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleFormControlTextarea1" >Observaciones</label>
+                                            <textarea class="form-control"  formControlName="observations" rows="4"></textarea> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="finalizar">
+                                    <button type="button" class="buttonColors btn btn-md" (click)="addCard()" [disabled]="!productForm.valid || colorSelectedId == 0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                                        </svg>
+                                
+                                    </button>
+                                </div>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+          </div>
+
+        
+
+          <div *ngIf="editAddress" class="panel panel-primary">
+            <div style="margin-bottom: 5px;" class="panel-heading">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                      <h6 class="list-group-item-heading">Agregar Dirección a la Orden {{orderId}}</h6>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-12">
+                    <form [formGroup]="addressData" > 
+            
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label for="address">Destinatario</label>
+                                <input type="text" class="form-control" formControlName="addresse"  id="name">
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label  for="address">Celular</label>
+                                <input type="text" class="form-control" formControlName="phoneAddresse" id="phone" >
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label  for="address">Dirección</label>
+                                <input type="text" class="form-control" formControlName="address" id="address">
+                            </div>
+        
+                            <div class="col-md-6 col-sm-12">
+                                <label  for="department">Departamento</label>
+                                <select class="form-select" formControlName="department" id="department" >
+                                    <option value="nv" disabled>Departamento</option>
+                                    <option *ngFor="let department of departmentList; index as i" value="{{department.id}}">{{department.name}}</option>
+                                </select>    
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="city">Municipio</label>
+                                <input type="text" class="form-control" formControlName="city" id="city">
+                            </div>
+                            <div class="margin-top col-12">
+                                <input [disabled]="!addressData.valid" class="buttonColors btn btn-md btn-primary mt-2" (click)="addAddress()" type="submit" value="Guardar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        
+    </div>
+    <div class="col-1"></div>
+</div>

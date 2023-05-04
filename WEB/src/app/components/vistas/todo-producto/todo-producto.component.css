@@ -1,0 +1,19 @@
+.product-desc {
+    color: #fff;
+    padding-left: 20px;
+    width: 100%;
+    display: inline-block;
+    line-height: 0;
+}
+
+.title {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.back-half-dark {
+    background-color: #232324;
+    border: 1px solid #fff;
+}

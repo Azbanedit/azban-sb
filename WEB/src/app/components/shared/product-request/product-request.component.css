@@ -1,0 +1,19 @@
+p{
+    color: antiquewhite;
+}
+
+#product-file{
+    margin: 10px 0px 10px 0px;
+}
+
+hr{
+    width: 100%;
+}
+
+tr{
+    height: 30px;
+}
+
+.table-info{
+    text-align: center;
+}

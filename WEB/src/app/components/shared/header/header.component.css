@@ -1,0 +1,17 @@
+.navbar-brand{
+    padding-left:50px;
+    color:rgb(19, 17, 17);
+    cursor: default;
+}
+
+.padding-right{
+    padding-right: 0%;
+}
+
+.header-red-v{
+    background-color: #f00;
+}
+
+.header-red-v a{
+    color: #fff;
+}

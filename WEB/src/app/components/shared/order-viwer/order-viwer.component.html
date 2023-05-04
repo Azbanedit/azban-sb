@@ -1,0 +1,56 @@
+<div style="height: 100%;" class="row bg-dark">
+    <div class="col-md-1"></div>
+    <div style="height: 100%;" class="col-md-4">
+        <div style="height: 100%;" class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+            <div style="height: 100%; overflow-y: auto;" class="row py-3 shadow-5">
+              <div class="col-12 mb-1 height-85">
+                <div class="main-img-container lightbox">
+                  <img
+                    src="https://azban7blob7storage.blob.core.windows.net/orders-images/{{MainImage}}"
+                    alt="Gallery image 1"
+                    class="ecommerce-gallery-main-img active w-100 margin-float-ver"
+                  />
+                </div>
+              </div>
+              <div *ngFor="let image of ImagesList" class="col-3 mt-1">
+                <img
+                  (click)="setMainImage(image)"
+                  src="https://azban7blob7storage.blob.core.windows.net/orders-images/{{image}}"
+                  alt="Gallery image 1"
+                  class="active w-100"
+                />
+              </div>
+            </div>
+          </div>
+    </div>
+    <div style="height: 100%; overflow-y: auto;"  class="col-md-6">
+      <div class="col-md-12">
+        <button (click)="closeOrderViwer()" type="button" class="btn float-right button-close" aria-label="Close">Х</button>
+      </div>
+        <div *ngFor="let product of Order.products" class="card" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.product}} / {{product.gender}} / {{product.size}}</h5>
+              
+              <div style="display: inline-flex;">
+                    
+                    <div class="form-check form-switch" id="check-clothes">
+                      <input [checked]="product.readyProductBase" class="mtop-middle-em form-check-input" type="checkbox" id="switchClothes">
+                     </div>
+                     <div class="icon-container">
+                        <img id="svg-shirt" src="../../../../assets/img/ryanlerch_white_t-shirt.svg" alt="">
+                        <span class="card-subtitle mb-2 text-muted"> x{{product.quantity}} / {{product.color}}</span>
+                      </div>
+              </div>
+              <p class="card-text fs-7">
+                  <span class="fs-7 fw-bold fst-italic">Est. Principal:</span> {{product.mainPrint}} <br>
+                  <span class="fs-7 fw-bold fst-italic">Est. Secundario:</span> {{product.secundaryPrint}} <br>
+                  <span class="fs-7 fw-bold fst-italic">Observaciones:</span> {{product.anotation}}
+              </p>
+              <!--<a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>-->
+            </div>
+          </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+

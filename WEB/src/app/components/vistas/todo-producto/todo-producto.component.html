@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <app-header></app-header>
+    </div>
+    <div class="col-12">
+        <header  class="title">
+            <strong> PARA CONFECCIONAR</strong>
+          </header>
+    </div>
+    <div *ngFor="let product of productsToDo" class="col-12">
+        <div class="row back-half-dark">
+            <div class="col-9">
+                <span class="product-desc">{{product.product}} </span>
+                <span class="product-desc">{{product.size}} - {{product.color}}</span>
+                <span class="product-desc">{{product.gender}}</span>
+            </div>
+            <div class="col-3">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label (click)="reportProductList(product.productDetailId)" style="margin-top: 5px;" id="" class="{{(product.wasProducced ? 'hide' : 'btn-success')}} btn">
+                      Listo
+                    </label>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</div>>

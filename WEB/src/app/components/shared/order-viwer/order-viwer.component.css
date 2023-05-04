@@ -1,0 +1,43 @@
+.fs-7{
+    font-size: 0.8rem !important;
+}
+
+.height-85{
+    height: 85%;
+    overflow: hidden;
+}
+
+#svg-shirt{
+    height: 16px;
+    width: 16px;
+}
+
+.mtop-middle-em{
+    margin-top: 0.4em !important;
+}
+
+.float-right{
+    float:right;
+}
+
+.pad-top-1{
+    padding-top: 1rem !important;
+}
+
+.pad-1{
+    padding: 1rem !important;
+}
+
+.main-img-container{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.margin-float-ver {
+    margin: auto;
+}
+
+.button-close{
+    color:white;
+}
