@@ -10,7 +10,9 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^12.2.2",
     "@angular/animations": "~12.2.0",
+    "@angular/cli": "^12.2.2",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -25,14 +27,11 @@
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.3",
     "ngx-file-drop": "^13.0.0",
-    "ngx-print": "^1.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.2",
-    "@angular/cli": "~12.2.2",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",

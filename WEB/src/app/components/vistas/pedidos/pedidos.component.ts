@@ -5,6 +5,8 @@ import { State } from 'src/app/models/state';
 import { Vendedor } from 'src/app/models/vendendor';
 import { GetClientService } from 'src/app/services/get-client.service';
 import { PipeFilterOrdersPipe } from 'src/app/pipes/pipe-filter-orders.pipe';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -18,6 +20,7 @@ export class PedidosComponent implements OnInit {
   collapseMenuClass: string = 'col-lg-1 col-md-1';
   showOrder: boolean = false;
   showShipmentData: boolean = false;
+  ShowForm: boolean = false;
   showOrderData: boolean = true;
   showPaid: Array<boolean> = [];
   showConfirmation:boolean = false;
@@ -440,14 +443,24 @@ export class PedidosComponent implements OnInit {
       this.classShipment = '';
       this.showShipmentData = false;
       this.showOrderData = true;
+      this.ShowForm = false;
+
     } else if (idButton == 2) 
     {
       this.classOrderList = '';
       this.classShipment = 'btn-primary';
       this.showShipmentData = true;
       this.showOrderData = false;
+      this.ShowForm = false;
+
+    } else if (idButton == 3) 
+    {
+      this.ShowForm = true;
+      this.showShipmentData = false;
+      this.showOrderData = false;
     }
   }
+
 
   payIcon(orderId: number){
     this.showConfirmation = true;

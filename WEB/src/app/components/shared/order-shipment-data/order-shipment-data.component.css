@@ -1,10 +1,12 @@
 #marginCheck{
     margin: 5px;
     text-align: right;
-    background-color: #518a71;
+    background-color: #9ae1c2;
+    color: black;
 }
 #marginCheck:hover{
     background-color: #11C777;
+    color: white;
 }
 .card{
     margin: 5px;
@@ -43,4 +45,15 @@ p{
 
 #idOrderSize{
     font-size: xx-large;
+}
+
+.order-title-style{
+    color: white;
+    font-size: x-large;
+    padding: 8px;
+}
+
+.button-to-print-style{
+    text-align: right;
+    color: white;
 }

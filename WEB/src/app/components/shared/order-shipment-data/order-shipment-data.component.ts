@@ -53,9 +53,10 @@ export class OrderShipmentDataComponent implements OnInit {
   }    
   
   openPreviewPrint(){
-   
-    
-    this.OrderToPrintEvent.emit(this.orderToPrint);
-    this.OpenPreviewEvent.emit();
+   if(this.orderToPrint.length > 0){
+     this.OrderToPrintEvent.emit(this.orderToPrint);
+     this.OpenPreviewEvent.emit();
+
+   }
   }
 }

@@ -15,9 +15,11 @@ import { LoaderComponent } from './components/shared/loader/loader.component';
 import { ProductRequestComponent } from './components/shared/product-request/product-request.component';
 import { TodoProductoComponent } from './components/vistas/todo-producto/todo-producto.component';
 import { OrderEditComponent } from './components/vistas/order-edit/order-edit.component';
+import { LoginComponent } from './components/vistas/login/login.component';
+import { ForgetPasswordComponent } from './components/vistas/forget-password/forget-password.component';
 
 //const domain : string = 'http://localhost:4200/';
-//const index : string = 'https://azban-buzos.azurewebsites.net/';
+//const index : string = 'https://azban-buzos.azurewebsites.net/';s
 const index : string = '';
 
 const routes: Routes = [
@@ -36,7 +38,9 @@ const routes: Routes = [
   { path: index+'charts', component: ChartsComponent},
   { path: index+'inventory', component: InventoryComponent},
   { path: index+'loader', component: LoaderComponent},
-  { path: index+'product-request', component: ProductRequestComponent}
+  { path: index+'product-request', component: ProductRequestComponent},
+  { path: index+'login', component: LoginComponent},
+  { path: index+'forget-password', component: ForgetPasswordComponent}
 ];
 
 @NgModule({

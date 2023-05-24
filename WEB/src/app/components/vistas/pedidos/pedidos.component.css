@@ -279,61 +279,94 @@ input:focus{
     background-color: #353b48;
     border-radius: 30px;
     padding: 2px 2px 2px 5px;
-    }
+}
 
-    .search_input{
+.search_input{
+color: white;
+border: 0;
+outline: 0;
+background: none;
+caret-color:transparent;
+line-height: 40px;
+padding: 0 10px;
+width: 450px;
+caret-color:rgb(255, 255, 255);
+}
+
+.search_icon{
+height: 40px;
+width: 40px;
+float: right;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+background: white;
+color: #e74c3c;
+text-decoration:none;
+}
+
+.margin-b-10{
+    margin-bottom: 10px;
+    padding-top: 8px;
+}
+
+.button-icon-white{
+    color:white;
+}
+
+thead{
+    background-color: rgb(44, 44, 44);
+}
+
+.border-l-1{
+    border-left:1px solid #fff;
+}
+
+.btn-circle {
+    width: 35px;
+    height: 35px;
+    padding: 6px 0px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.42857;
+    padding-top: 0;
+}
+
+.client-info {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.order-title-style{
     color: white;
-    border: 0;
-    outline: 0;
-    background: none;
-    caret-color:transparent;
-    line-height: 40px;
-    padding: 0 10px;
-    width: 450px;
-    caret-color:rgb(255, 255, 255);
-    }
+    font-size: x-large;
+}
 
-    .search_icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: white;
-    color: #e74c3c;
-    text-decoration:none;
-    }
+.narvar-style{
+    text-align: center;
+    border-radius: 5px;
+    color: #1e1f22;
+}
 
-    .margin-b-10{
-        margin-bottom: 10px;
-    }
+.width-style-narvar{
+    width: 200px;
+}
 
-    .button-icon-white{
-        color:white;
-    }
-
-    thead{
-        background-color: rgb(44, 44, 44);
-    }
-
-    .border-l-1{
-        border-left:1px solid #fff;
-    }
-
-    .btn-circle {
-        width: 35px;
-        height: 35px;
-        padding: 6px 0px;
-        border-radius: 20px;
-        text-align: center;
-        font-size: 22px;
-        line-height: 1.42857;
-        padding-top: 0;
-    }
-
-    .client-info {
-        text-align: left;
-        padding-left: 20px;
-    }
+nav {
+    text-align: center;
+}
+  
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    width: fit-content;
+}
+  
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+  

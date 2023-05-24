@@ -18,7 +18,6 @@ import { ModalMessageComponent } from './components/shared/modal-message/modal-m
 import { OrderShipmentDataComponent } from './components/shared/order-shipment-data/order-shipment-data.component';
 import { ConfirmationMessageComponent } from './components/shared/confirmation-message/confirmation-message.component';
 import { TooltipModule } from '@syncfusion/ej2-angular-popups';
-import { NgxPrintModule } from 'ngx-print';
 import { ToPrintComponent } from './components/shared/to-print/to-print.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
@@ -31,6 +30,8 @@ import { UploadfileComponent } from './components/shared/uploadfile/uploadfile.c
 import { OrderViwerComponent } from './components/shared/order-viwer/order-viwer.component';
 import { TodoProductoComponent } from './components/vistas/todo-producto/todo-producto.component';
 import { OrderEditComponent } from './components/vistas/order-edit/order-edit.component';
+import { LoginComponent } from './components/vistas/login/login.component';
+import { ForgetPasswordComponent } from './components/vistas/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,9 @@ import { OrderEditComponent } from './components/vistas/order-edit/order-edit.co
     UploadfileComponent,
     OrderViwerComponent,
     TodoProductoComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    LoginComponent,
+    ForgetPasswordComponent
     
   ],
   imports: [
@@ -67,7 +70,6 @@ import { OrderEditComponent } from './components/vistas/order-edit/order-edit.co
     CommonModule,
     HttpClientModule,
     TooltipModule,
-    NgxPrintModule,
     ChartsModule,
     NgxFileDropModule
   ],

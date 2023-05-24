@@ -320,3 +320,8 @@ textarea{
   width: 150px;
 }
 
+.order-title-style{
+  color: white;
+  font-size: x-large;
+  padding: 8px;
+}
