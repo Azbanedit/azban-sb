@@ -43,19 +43,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item width-style-narvar" >
-            <a class="nav-link" href="#" [ngClass]="classOrderList" (click)="changeList(1)" >Gestión de pedido</a>
+            <a class="nav-link" href="#" [ngClass]="classOrderList" title="Pedidos" (click)="changeList(1)" >Gestión de pedido</a>
           </li>
-          <li class="nav-item active width-style-narvar" [ngClass]="classShipment" (click)="changeList(2)">
+          <li class="nav-item active width-style-narvar" [ngClass]="classShipment" title="Pedido de impresión para envío" (click)="changeList(2)">
             <a class="nav-link" href="#">Guías de envío</a>
           </li>
           <li class="nav-item width-style-narvar">
-            <a class="nav-link" href="#">Gráficos</a>
+            <a class="nav-link" href="#" title="Visualizar gráficos y estadísticas" (click)="changeList(4)">Estadisticas</a>
           </li>
           <li class="nav-item width-style-narvar">
-            <a class="nav-link" href="#" (click)="changeList(3)">Registro de pedido</a>
+            <a class="nav-link" href="#" title="Registrar un pedido nuevo" (click)="changeList(3)">Registro de pedido</a>
           </li>
           <li class="nav-item width-style-narvar">
-            <a class="nav-link" href="#">Cerrar sesión</a>
+            <a class="nav-link" href="#" title="Cerrar Sesión" (click)="logout()">Cerrar sesión</a>
           </li>
         </ul>
       </div>
@@ -75,9 +75,13 @@
     </div>
     <!--Formulario de registro de pedido-->
     <div *ngIf="ShowForm">
-      <app-form
-      >
+      <app-form>
       </app-form>
+    </div>
+    <!--Graficas-->
+    <div *ngIf="ShowChart">
+      <app-charts>
+      </app-charts>
     </div>
     <!--Gestion de pedido-->
     <div class="row margin-b-10" *ngIf="showOrderData && !viewOrderDetails">
@@ -85,24 +89,24 @@
         <strong> Gestión de pedidos</strong>
       </div>
       <div id="buttonColorsFilter" class="col-lg-4">
-        <button type="button" (click)="setStateId(3)" class="btnForm back-green btn"></button>
-        <button type="button" (click)="setStateId(2)" class="btnForm back-blue  btn"></button>
-        <button type="button" (click)="setStateId(1)" class="btnForm back-dark  btn"></button>
-        <button type="button" (click)="setStateId(0)" class="btnForm back-white  btn"></button>
+        <button type="button" (click)="setStateId(3)" title="Pedidos listos para entrega" class="btnForm back-green btn"></button>
+        <button type="button" (click)="setStateId(2)" title="Pedidos en producción" class="btnForm back-blue  btn"></button>
+        <button type="button" (click)="setStateId(1)" title="Pedidos creados" class="btnForm back-dark  btn"></button>
+        <button type="button" (click)="setStateId(0)" title="Todos los pedidos" class="btnForm back-white  btn"></button>
       </div>
       <div class="col-lg-3">
         <div class="searchbar">
-          <input class="search_input" type="text" [(ngModel)]="filterByWords" name="filterByWords" placeholder="Search...">
+          <input class="search_input" type="text" [(ngModel)]="filterByWords" title="Buscar por cliente y estampado"name="filterByWords" placeholder="Search...">
         </div>
         
       </div>
       <div class="col-lg-1">
-        <button id="eyeButton" (click)="viewAllDetails()" type="button" class="button-icon-white borderButton btn" >
+        <button id="eyeButton" (click)="viewAllDetails()" type="button" title="Ver todo" class="button-icon-white borderButton btn" >
           <svg *ngIf="!openViewAll" id="viewAll" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
             <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
           </svg>
-          <svg *ngIf="openViewAll" id="closeAll" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+          <svg *ngIf="openViewAll" id="closeAll" xmlns="http://www.w3.org/2000/svg" title="Cerrar todo" width="25" height="25" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
             <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
             <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
             <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
@@ -112,10 +116,21 @@
     </div>
     <div *ngIf="showOrderData && !viewOrderDetails" class="col-lg-12 col-md-12"  class="card" id="card-complete">
       <div  class="panel-group" >
+        <div class="style-title-dt">
+          <tr>
+            <th class="col-lg-1 col-md-1 padding-0">Código</th>
+            <th class="col-lg-2 col-md-2 padding-0">Estado de pedido</th>
+            <th class="col-lg-4 col-md-4 padding-0">Cliente</th>
+            <th class="col-lg-2 col-md-2 padding-0">Estado de pago</th>
+            <th class="col-lg-1 col-md-1 padding-0">Estampado</th>
+            <th class="col-lg-1 col-md-2 padding-0">Fecha de entrega</th>
+          </tr>
+        </div>
         <div *ngFor="let order of orderData | pipeFilterOrders:filterByWords ; index as i " [style.display]="filterByState(order.stateId) ? '' : 'none'"  class="panel panel-default" id="borderState" [ngClass]="order.stateId==3 ? 'lborder-green' :  (order.stateId==2 ? 'lborder-blue' : 'back-dark')" >
           <div> 
             <table class="dataState" id="borderOrder" *ngIf="filterByState(order.stateId)" >
               <thead>
+    
                 <tr >
                   <th class="col-lg-1 col-md-1 padding-0" [ngClass]="getColorState(order.stateId)"><small>{{order.id}}</small></th>
                   <th class="col-lg-2 col-md-2 padding-0" >
@@ -125,27 +140,27 @@
                   </th>
                   <th class="col-lg-5 col-md-5 padding-0 client-info"><small>{{order.client}} ( {{order.contact}} )</small></th>
                   <th class="col-lg-2 col-md-2 padding-0"><small>$ {{order.deposit}} - </small>
-                    <button *ngIf="!order.payed" (click)="payIcon(order.id)" class="color-green-v2 btn btn-primary btn-circle">
+                    <button *ngIf="!order.payed" (click)="payIcon(order.id)" title="Pago pendiente" class="color-green-v2 btn btn-primary btn-circle">
                       <svg id="paidIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
                         <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                       </svg>
                     </button>
-                    <svg *ngIf="order.payed" id="paidIcon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                    <svg *ngIf="order.payed" id="paidIcon" xmlns="http://www.w3.org/2000/svg" title="Pago completo" width="25" height="25" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                     </svg>
                   </th>
                   <th class="col-lg-1 col-md-1 padding-0" >
-                    <button type="button" *ngIf="order.numImages > 0" [ngClass]="classBgColor[i]" class="btn btn-primary" (click)="viewOrder(order)">Ver</button>
+                    <button type="button" *ngIf="order.numImages > 0" title="Ver imagen" [ngClass]="classBgColor[i]" class="btn btn-primary" (click)="viewOrder(order)">Ver</button>
                   </th>
                   <th class="col-lg-2 col-md-2 padding-0" ><small><label [ngClass]="classBgColor[i]" class="spaceColorState">{{order.deliveryDate.substring(0,10)}}</label></small></th>
                   
                   <th id="lookOrderPadding">
                     <button id="lookOrder" (click)="lookOrder(i)">
-                      <svg *ngIf="!openView[i] && !openViewAll" id="eyeOpened" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                      <svg *ngIf="!openView[i] && !openViewAll" id="eyeOpened" title="Cerrar detalle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                       </svg>
-                      <svg *ngIf="openView[i] || openViewAll" id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                      <svg *ngIf="openView[i] || openViewAll" id="eyeClosed" title="Ver detalle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
                         <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
                         <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
                         <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>

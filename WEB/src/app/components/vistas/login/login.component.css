@@ -19,3 +19,12 @@
 .welcome-style{
     padding: 10px;
 }
+
+.style-incorrect-m{
+    color: rgb(209, 0, 0);
+}
+
+.style-button-login{
+    text-align: center;
+    margin-top: 20px;
+}

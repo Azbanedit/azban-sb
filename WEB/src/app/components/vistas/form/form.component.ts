@@ -22,7 +22,6 @@ export class FormComponent implements OnInit {
   showAddressForm: boolean = false;
   isClientSearched: boolean = false;
   isClientSelected: boolean = false;
-  disabledClientAddAddress: boolean = false;
   colorDropdown: Color;
   colorList: Array<Color> = [];
   client: Client;
@@ -36,8 +35,6 @@ export class FormComponent implements OnInit {
   showConfirmation: boolean = false;
   showErrorConfirmation: boolean = false;
   showButtonCreate: boolean = false;
-  disableClientsField: boolean = false;
-  disableEdit: boolean = true; 
   addressList: Array<Address> = [];
   classPago: string= 'borderButtonColor';
   classAbono: string= 'borderButtonColor';
@@ -57,7 +54,6 @@ export class FormComponent implements OnInit {
   code: number = 0;
   statePaid: boolean = false;
   stateDeposit: boolean = false;
-  buttonPayDisabled: boolean = false;
   images: any  = [];
 
   addressId = new Address();
@@ -74,7 +70,7 @@ export class FormComponent implements OnInit {
     phone:new FormControl('',[Validators.required,Validators.minLength(7), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     city: new FormControl('',[Validators.required, Validators.minLength(4)]),
     address: new FormControl('',[Validators.required, Validators.minLength(5)]),
-    deposit:new FormControl('',[Validators.required,Validators.minLength(4), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+    deposit:new FormControl('',[Validators.minLength(4), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     department:new FormControl('nv',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     paymentMethod: new FormControl('nv',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     addresse: new FormControl('', [Validators.required,Validators.maxLength(100), Validators.minLength(4)]),
@@ -110,14 +106,12 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.registerForm.controls.name.disable();
-    this.registerForm.controls.phone.disable();
-    this.registerForm.controls.email.disable();
-    this.registerForm.controls.department.disable();
-    this.registerForm.controls.city.disable();
-    this.registerForm.controls.address.disable();
-    this.registerForm.controls.paymentMethod.disable();
-    this.registerForm.controls.deposit.disable();
+    var value = localStorage.getItem('azban-login');
+    var isLoged = value !== null;
+    if(isLoged == false){
+      window.location.href = "/#/login";
+      return;
+    } 
   
     this.serviceClient.getListsTransversal().subscribe((resp: any) => {
       this.documentList = resp.response.documentTypes;
@@ -178,7 +172,6 @@ export class FormComponent implements OnInit {
       this.classAbono='borderButtonColor';
       console.log('ingresaBoton 2')
       this.selectedPay = 1;
-      this.registerForm.controls.deposit.disable();
       this.statePaid = true;
       this.stateDeposit = false;
     }
@@ -192,9 +185,6 @@ export class FormComponent implements OnInit {
       this.statePaid = false;
       this.stateDeposit = true;
     }
-
-    console.log('Pago ' + this.statePaid);
-    console.log('Abono ' + this.stateDeposit);
   }
 
   setBgDropdownColor(indiceColor: string){
@@ -203,7 +193,6 @@ export class FormComponent implements OnInit {
 
   selectColor(colorId: number, colorIndex: string){
     this.colorSelectedId = colorId;
-    console.log(this.colorSelectedId)
     this.colorBgButton = colorIndex;
   }
     
@@ -239,25 +228,6 @@ export class FormComponent implements OnInit {
     this.registerForm.controls.deposit.enable();
     this.registerForm.controls.contactType.enable();
     this.registerForm.controls.contactName.enable();
-  }
-
-  disabledFields(){
-    this.registerForm.controls.name.disable();
-    this.registerForm.controls.phone.disable();
-    this.registerForm.controls.contactType.disable();
-    this.registerForm.controls.contactName.disable();
-    this.registerForm.controls.email.disable();
-    this.registerForm.controls.department.disable();
-    this.registerForm.controls.city.disable();
-    this.registerForm.controls.address.disable();
-    this.registerForm.controls.paymentMethod.disable();
-    this.registerForm.controls.deposit.disable();
-    this.registerForm.controls.addresse.disable();
-    this.registerForm.controls.phoneAddresse.disable();
-    this.registerForm.controls.discount.disable();
-    this.registerForm.controls.total.disable();
-    this.registerForm.controls.replyUserData.disable();
-    this.buttonPayDisabled = true;
   }
 
 
@@ -306,17 +276,6 @@ export class FormComponent implements OnInit {
         this.registerForm.controls.email.setValue(this.client.email);
         this.registerForm.controls.contactType.setValue(this.client.idContactType);
         this.registerForm.controls.contactName.setValue(this.client.contactValue);
-        this.registerForm.controls.name.disable();
-        this.registerForm.controls.phone.disable();
-        this.registerForm.controls.email.disable();
-        this.registerForm.controls.department.disable();
-        this.registerForm.controls.city.disable();
-        this.registerForm.controls.address.disable();
-        this.registerForm.controls.contactType.disable();
-        this.registerForm.controls.contactName.disable();
-        this.registerForm.controls.addresse.disable();
-        this.registerForm.controls.phoneAddresse.disable();
-        this.registerForm.controls.replyUserData.disable();
 
       } else if (resp.code == 1 && resp.response.adresses == null ) {
 
@@ -325,12 +284,6 @@ export class FormComponent implements OnInit {
         this.registerForm.controls.email.setValue(this.client.email);
         this.registerForm.controls.contactType.setValue(this.client.idContactType);
         this.registerForm.controls.contactName.setValue(this.client.contactValue);
-        this.registerForm.controls.name.disable();
-        this.registerForm.controls.phone.disable();
-        this.registerForm.controls.email.disable();
-        this.registerForm.controls.contactType.disable();
-        this.registerForm.controls.contactName.disable();
-        this.disabledClientAddAddress = true;
         
       } else if(resp.code == -1){
         this.resetForm();
@@ -347,12 +300,7 @@ export class FormComponent implements OnInit {
 
     console.log(this.products);
     this.showForm2 = true;
-    
-    this.disabledFields()
-
     this.isClientSelected = true;
-    this.disableEdit = false;
-
     this.client.name = this.registerForm.controls.name.value;
     this.client.idDocumentType = this.registerForm.controls.documentType.value;
     this.client.document = this.registerForm.controls.document.value;
@@ -410,7 +358,6 @@ export class FormComponent implements OnInit {
 
   editClient(){
     
-    this.disableClientsField = false;
     this.registerForm.controls.name.enable();
     this.registerForm.controls.phone.enable();
     this.registerForm.controls.email.enable();
@@ -426,8 +373,6 @@ export class FormComponent implements OnInit {
     this.registerForm.controls.replyUserData.enable();
     this.registerForm.controls.discount.enable();
     this.registerForm.controls.total.enable();
-    this.buttonPayDisabled = false;
-    this.disableEdit = true;
     this.isClientSelected= false;
 
     this.clientWasEdited = true;
@@ -623,8 +568,6 @@ export class FormComponent implements OnInit {
     if(this.registerForm.controls.replyUserData.value){
     this.registerForm.controls.addresse.setValue(this.client.name);
     this.registerForm.controls.phoneAddresse.setValue(this.client.phone);
-    this.registerForm.controls.addresse.disable();
-    this.registerForm.controls.phoneAddresse.disable();
     this.registerForm.controls.addresse.setValue(this.registerForm.controls.name.value);
     this.registerForm.controls.phoneAddresse.setValue(this.registerForm.controls.phone.value);
     } else {

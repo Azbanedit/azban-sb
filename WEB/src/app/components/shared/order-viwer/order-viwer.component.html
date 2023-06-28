@@ -30,12 +30,7 @@
         <div *ngFor="let product of Order.products" class="card" style="width: 100%;">
             <div class="card-body">
               <h5 class="card-title">{{product.product}} / {{product.gender}} / {{product.size}}</h5>
-              
               <div style="display: inline-flex;">
-                    
-                    <div class="form-check form-switch" id="check-clothes">
-                      <input [checked]="product.readyProductBase" class="mtop-middle-em form-check-input" type="checkbox" id="switchClothes">
-                     </div>
                      <div class="icon-container">
                         <img id="svg-shirt" src="../../../../assets/img/ryanlerch_white_t-shirt.svg" alt="">
                         <span class="card-subtitle mb-2 text-muted"> x{{product.quantity}} / {{product.color}}</span>

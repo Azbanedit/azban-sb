@@ -4,12 +4,12 @@ import { Client } from '../models/client';
 import { Address } from '../models/address';
 import { Product } from '../models/product';
 import { Order } from '../models/order';
+import { Login } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetClientService {
-  
   
   //_url = 'https://localhost:44347/api/'//'http://localhost/azban-api/api/'// 
   _url = 'https://azban-buzos-api.azurewebsites.net/api/'
@@ -18,6 +18,41 @@ export class GetClientService {
   constructor( private http: HttpClient )
   { 
     console.log("Services")
+  }
+
+  reportColors(){
+    let header = new HttpHeaders().set('Type-content', 'aplication/json');
+    let getColorReport = this._url + 'Report/Color';
+    return this.http.get(getColorReport , { headers: header});
+  }
+
+  reportSizes(){
+    let header = new HttpHeaders().set('Type-content', 'aplication/json');
+    let getSizeReport = this._url + 'Report/Size';
+    return this.http.get(getSizeReport , { headers: header});
+  }
+
+  reportStates(){
+    let header = new HttpHeaders().set('Type-content', 'aplication/json');
+    let getStateReport = this._url + 'Report/State';
+    return this.http.get(getStateReport , { headers: header});
+  }
+
+  reportPayment(){
+    let header = new HttpHeaders().set('Type-content', 'aplication/json');
+    let getPayReport = this._url + 'Report/Payment';
+    return this.http.get(getPayReport , { headers: header});
+  }
+
+  reportSalesMoth(){
+    let header = new HttpHeaders().set('Type-content', 'aplication/json');
+    let getSalesReport = this._url + 'Report/Sales';
+    return this.http.get(getSalesReport , { headers: header});
+  }
+
+  login(login: Login){
+    let postUser = this._url + 'User/Login';
+    return this.http.post( postUser , login);
   }
   
   getData(idDocumentType: number , document: string){

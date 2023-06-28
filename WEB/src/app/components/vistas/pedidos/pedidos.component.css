@@ -348,6 +348,7 @@ thead{
     text-align: center;
     border-radius: 5px;
     color: #1e1f22;
+    margin-top: 10px;
 }
 
 .width-style-narvar{
@@ -369,4 +370,11 @@ nav li {
     display: inline-block;
     margin-right: 10px;
 }
-  
+
+.abonado-style{
+    font-size: xx-small;
+}
+
+.style-title-dt{
+    color: white;
+}

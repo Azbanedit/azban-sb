@@ -25,6 +25,7 @@ export class PedidosComponent implements OnInit {
   showPaid: Array<boolean> = [];
   showConfirmation:boolean = false;
   showPreview: boolean = false;
+  ShowChart: boolean = false;
   viewOrderDetails: boolean = false;
   classOrderList: string = '';
   classShipment: string = '';
@@ -61,6 +62,13 @@ export class PedidosComponent implements OnInit {
     let year = this.date.getFullYear();
 
     this.date = new Date(year + '-' + month + '-' + day);
+  }
+
+  logout(){
+    localStorage.removeItem('azban-login');
+    localStorage.removeItem('login-date');
+    window.location.href = "/#/login";
+    console.log('logout');
   }
 
   ejercicio1()
@@ -345,6 +353,14 @@ export class PedidosComponent implements OnInit {
     this.ejercicio7();
     this.ejercicio9();
     this.ejercicio10();*/
+    
+    var value = localStorage.getItem('azban-login');
+    var isLoged = value !== null;
+    if(isLoged == false){
+      window.location.href = "/#/login";
+      return;
+    } 
+
     this.serviceClient.getOrderStates().subscribe((resp:any) => {
       this.statesList = resp.response
       console.log("estado de lista " + this.statesList[5].stateId)
@@ -369,14 +385,7 @@ export class PedidosComponent implements OnInit {
         //console.log( 'Fecha Actual: ' + this.date.getUTCDate() + '-' + (this.date.getUTCMonth() + 1) + '-' + this.date.getUTCFullYear());
         
         this.differenceData[i] = dateTest.getTime() - this.date.getTime();
-        
-        if (this.differenceData[i] == 0) {
-          this.classBgColor[i] = 'color-yellow';
-        } else if (this.differenceData[i] < 0 ){
-          this.classBgColor[i] = 'color-red';
-        } else if (this.differenceData[i] > 0){
-          this.classBgColor[i] = 'color-green';
-        }
+        this.classBgColor[i] = 'color-yellow';
       }
     });
 
@@ -444,6 +453,7 @@ export class PedidosComponent implements OnInit {
       this.showShipmentData = false;
       this.showOrderData = true;
       this.ShowForm = false;
+      this.ShowChart = false;
 
     } else if (idButton == 2) 
     {
@@ -452,10 +462,18 @@ export class PedidosComponent implements OnInit {
       this.showShipmentData = true;
       this.showOrderData = false;
       this.ShowForm = false;
+      this.ShowChart = false;
 
     } else if (idButton == 3) 
     {
       this.ShowForm = true;
+      this.showShipmentData = false;
+      this.showOrderData = false;
+      this.ShowChart = false;
+    } else if (idButton == 4)
+    {
+      this.ShowChart = true;
+      this.ShowForm = false;
       this.showShipmentData = false;
       this.showOrderData = false;
     }

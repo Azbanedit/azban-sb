@@ -1,20 +1,17 @@
-<div class="container">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/bar-chart">Bar Chart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/doughnut-chart">Doughnut Chart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/radar-chart">Radar Chart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/pie-chart">Pie Chart</a>
-      </li>
-    </ul>
-  
-    <div>
-      <router-outlet></router-outlet>
-    </div>
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-sm-hidden">
+    <canvas id="orderByState"></canvas>
   </div>
+  <div class="col-lg-5 col-md-4 col-sm-hidden">
+    <canvas id="salesPerMonth"></canvas>
+  </div>
+  <div class="col-lg-2 col-md-4 col-sm-hidden">
+    <canvas id="payment"></canvas>
+  </div>
+  <div class="col-lg-6 col-md-4 col-sm-hidden">
+    <canvas id="topColors"></canvas>
+  </div>
+  <div class="col-lg-6 col-md-4 col-sm-hidden">
+    <canvas id="sizeTop"></canvas>
+  </div>
+</div>

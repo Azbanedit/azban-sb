@@ -147,6 +147,9 @@ height: 100%;
 width: 100%;
 display:flex;
 justify-content: center;
+height: 85%;
+width: 83%;
+border-radius: 20px;
 }
 
 #container-pop-up{
@@ -164,6 +167,9 @@ height: 100%;
 width: 100%;
 display:flex;
 justify-content: center;
+height: 70%;
+width: 83%;
+border-radius: 20px;
 }
 
 #container-pop-up-address-list{
@@ -182,11 +188,18 @@ max-height: 428px;
   width: 100%;
   display:flex;
   justify-content: center;
+  height: 70%;
+  width: 83%;
+  border-radius: 20px;
+  padding-top: 130px;
 }
 
 #container-pop-up-confirmation{
   position:absolute;
   width: 400px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 10px;
 }
 
 #background-pop-up-loader{
@@ -197,6 +210,9 @@ max-height: 428px;
   width: 100%;
   display:flex;
   justify-content: center;
+  height: 70%;
+  width: 83%;
+  border-radius: 20px;
 }
 
 #container-pop-up-loader{

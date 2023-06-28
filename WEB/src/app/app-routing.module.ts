@@ -13,7 +13,6 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { ProductRequestComponent } from './components/shared/product-request/product-request.component';
-import { TodoProductoComponent } from './components/vistas/todo-producto/todo-producto.component';
 import { OrderEditComponent } from './components/vistas/order-edit/order-edit.component';
 import { LoginComponent } from './components/vistas/login/login.component';
 import { ForgetPasswordComponent } from './components/vistas/forget-password/forget-password.component';
@@ -25,7 +24,6 @@ const index : string = '';
 const routes: Routes = [
   { path: index+'order-edit', component: OrderEditComponent },
   { path: index+'vista-pedidos', component: PedidosComponent },
-  { path: index+'vista-confeccion', component: TodoProductoComponent },
   { path: index+'', component: PedidosComponent },
   { path: index+'crear-pedido', component: FormComponent },
   { path: index+'address-form', component: AddressFormComponent},

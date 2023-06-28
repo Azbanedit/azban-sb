@@ -16,7 +16,12 @@ export class ToPrintComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("PrintData:" + this.PrintData)
+    var value = localStorage.getItem('azban-login');
+    var isLoged = value !== null;
+    if(isLoged == false){
+      window.location.href = "/#/login";
+      return;
+    } 
   }
 
   closePreview(){
